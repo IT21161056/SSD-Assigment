@@ -11,7 +11,7 @@ const { corsOptions } = require("./config/corsOptions");
 // Routes
 const rootRoute = require("./routes/root");
 const noticeRouter = require("./routes/NoticeRouter");
-const userRouter = require("./routes/UserRouter");
+const userRouter = require("./routes/userRoutes");
 const libraryItemRouter = require("./routes/LibraryItemRouter");
 const LectureRouter = require("./routes/LectureRouter");
 
