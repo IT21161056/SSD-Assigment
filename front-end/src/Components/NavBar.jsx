@@ -18,6 +18,7 @@ const NavBar = () => {
     userName,
     setUserName,
   } = useContext(AuthContext);
+
   const [navbar, setNavbar] = useState();
   const navigate = useNavigate();
 
@@ -108,7 +109,7 @@ const NavBar = () => {
             ) : null}
 
             <li>
-              <a href="#!">Hello {userName}</a>
+              <a href="#!">Hello &nbsp;&nbsp;<b>{userName}</b></a>
             </li>
             <li>
               <a
