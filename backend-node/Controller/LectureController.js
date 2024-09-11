@@ -1,19 +1,25 @@
 const LectureModel = require("../Model/LectureModel");
+const { CustomError } = require("../exceptions/baseException");
+const { tryCatch } = require("../utils/tryCatchWrapper");
+const path = require("path");
+const cloudinary = require("../utils/cloudinary");
+
+const fileInArray = [];
+
 //getAll
-const getAllLecture = async (req, res, next) => {
-  let lectures;
-  try {
-    lectures = await LectureModel.find();
-  } catch (error) {
-    console.log(error);
-  }
-  if (!lectures) {
-    return res.status(404).json({ message: "Not found" });
-  }
+const getAllLecture = tryCatch(async (req, res, next) => {
+  const lectures = await LectureModel.find();
+
+  if (!lectures) throw new CustomError("Not found");
+
   return res.status(200).json(lectures);
-};
+});
+
 //add
-const addLecture = async (req, res, next) => {
+const addLecture = tryCatch(async (req, res) => {
+  console.log(req.files.length);
+  console.log("Files", fileInArray);
+
   const {
     year,
     semester,
@@ -23,81 +29,112 @@ const addLecture = async (req, res, next) => {
     time,
     discription,
     meeting_link,
-    slide,
-    tutorial,
   } = req.body;
-  let lecture;
-  try {
-    lecture = new LectureModel({
-      year,
-      semester,
-      topic,
-      subject,
-      date,
-      time,
-      discription,
-      meeting_link,
-      slide,
-      tutorial,
-    });
-    await lecture.save();
-  } catch (error) {
-    console.log(error);
+
+  let pdf;
+
+  for (let i = 0; i < fileInArray.length; i++) {
+    let fileExtension = fileInArray[i][0].split(".")[1];
+    console.log(path.resolve(__dirname, "../uploads"));
+
+    if (fileExtension == "pdf") {
+      pdf = await cloudinary.uploader.upload(
+        `${path.resolve(__dirname, "../uploads")}/${fileInArray[i][0]}`,
+        { pages: true }
+      );
+    }
   }
-  if (!lecture) {
-    return res.status(500).json({ message: "unable to add" });
-  }
-  return res.status(201).json(lecture);
-};
+
+  const newPDF = new LectureModel({
+    year,
+    semester,
+    topic,
+    subject,
+    date,
+    time,
+    description: discription,
+    meeting_link,
+    pdf: pdf.secure_url,
+    cloudinary_id_pdf: pdf.public_id,
+  });
+
+  const response = await newPDF.save();
+
+  res.json(response);
+});
 
 //getByid
-const getLectureById = async (req, res, next) => {
+const getLectureById = tryCatch(async (req, res, next) => {
   const id = req.params.id;
-  let lecture;
-  try {
-    lecture = await LectureModel.findById(id);
-  } catch (error) {
-    console.log(error);
-  }
-  if (!lecture) {
-    return res.status(404).json({ message: "Not found" });
-  }
-  return res.status(200).json(lecture);
-};
-//delete
-const DeleteLecture = async (req, res, next) => {
-  const id = req.params.id;
-  let lecture;
-  try {
-    lecture = await LectureModel.findByIdAndRemove(id);
-  } catch (error) {
-    console.log(error);
-  }
-  if (!lecture) {
-    return res.status(404).json({ message: "cannot delete" });
-  }
-  return res.status(200).json({ message: `product ${id} deleted` });
-};
-// //update
-// const updateNotice = async(req,res,next)=>{
-//     const id= req.params.id;
-//     const {faculty,module,topic,notice}=req.body;
-//     let notices;
-//     try {
-//         notices = await NoticeModel.findByIdAndUpdate(id,{
-//             faculty,module,topic,notice
-//         })
-//         notices = await NoticeModel.save()
-//     } catch (error) {
-//         console.log(error);
-//     }if(!notices){
-//         return res.status(404).json({message:"cannot update"});
-//     }
-//     return res.status(200).json({notices});
-// }
+  const lecture = await LectureModel.findById(id);
 
-exports.addLecture = addLecture;
-// exports.updateNotice=updateNotice;
-exports.DeleteLecture = DeleteLecture;
-exports.getLectureById = getLectureById;
-exports.getAllLecture = getAllLecture;
+  if (!lecture) throw new CustomError("Not found");
+
+  return res.status(200).json(lecture);
+});
+
+//delete
+const deleteLecture = tryCatch(async (req, res, next) => {
+  const id = req.params.id;
+  const lecture = await LectureModel.findByIdAndRemove(id);
+
+  if (!lecture) throw new CustomError("cannot delete");
+
+  return res.status(200).json({ message: `product ${id} deleted` });
+});
+
+// update
+const updateLecture = tryCatch(async (req, res) => {
+  const id = req.params.id;
+
+  const {
+    year,
+    semester,
+    topic,
+    subject,
+    date,
+    time,
+    discription,
+    meeting_link,
+  } = req.body;
+
+  console.log(req.files.length);
+  console.log("Files", fileInArray);
+  // let img;
+
+  let pdff;
+
+  for (let i = 0; i < fileInArray.length; i++) {
+    let fileext = fileInArray[i][0].split(".")[1];
+    console.log(path.resolve(__dirname, "../uploads"));
+
+    if (fileext == "pdf")
+      pdff = await cloudinary.uploader.upload(
+        `${path.resolve(__dirname, "../uploads")}/${fileInArray[i][0]}`,
+        { pages: true }
+      );
+  }
+  let pdf = await LectureModel.findByIdAndUpdate(id, {
+    year,
+    semester,
+    topic,
+    subject,
+    date,
+    time,
+    description: discription,
+    meeting_link,
+    pdf: pdff.secure_url,
+    cloudinary_id_pdf: pdff.public_id,
+  });
+  await pdf.save();
+
+  res.json(pdf);
+});
+
+module.exports = {
+  addLecture,
+  deleteLecture,
+  getLectureById,
+  getAllLecture,
+  updateLecture,
+};

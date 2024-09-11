@@ -1,11 +1,17 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const NoticeController = require('../Controller/NoticeController');
+const {
+  addNotice,
+  getAllNotices,
+  getNoticeById,
+  updateNotice,
+  DeleteNotice,
+} = require("../Controller/NoticeController");
 
-router.get("/",NoticeController.getAllNotices);
-router.post("/",NoticeController.addNotice);
-router.get("/:id",NoticeController.getNoticeById);
-router.put("/:id",NoticeController.updateNotice);
-router.delete("/:id",NoticeController.DeleteNotice);
+router.get("/", getAllNotices);
+router.post("/", addNotice);
+router.get("/:id", getNoticeById);
+router.put("/:id", updateNotice);
+router.delete("/:id", DeleteNotice);
 
-module.exports=router;
+module.exports = router;

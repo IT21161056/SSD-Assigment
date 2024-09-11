@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema, model } = mongoose;
 
 const LectureSchema = new Schema({
   year: {
@@ -12,7 +12,6 @@ const LectureSchema = new Schema({
   },
   topic: {
     type: String,
-    
   },
   subject: {
     type: String,
@@ -38,12 +37,12 @@ const LectureSchema = new Schema({
     type: String,
     required: true,
   },
-  cloudinary_id_img:{
+  cloudinary_id_img: {
     type: String,
-},
-cloudinary_id_pdf:{
+  },
+  cloudinary_id_pdf: {
     type: String,
-},
+  },
   // slide: {
   //   type: String,
   //   required: true,
@@ -53,4 +52,4 @@ cloudinary_id_pdf:{
   //   required: true,
   // },
 });
-module.exports = mongoose.model("Lecture", LectureSchema);
+module.exports = model("Lecture", LectureSchema);
