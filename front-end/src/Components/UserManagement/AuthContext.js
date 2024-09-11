@@ -6,12 +6,6 @@ export default({children})=>{
     const [userDetails, setUserDetails] = useState([]);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [userName, setUserName] = useState("");
-    // useEffect(()=>{
-        
-    //     setUserDetails("user");
-    //     setIsAuthenticated("hi");
-        
-    // },[]);
     
     return(
         <div>
