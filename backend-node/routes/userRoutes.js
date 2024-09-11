@@ -8,12 +8,13 @@ const {
   login,
   updateUser,
 } = require("../controller/userController");
+const loginLimitter = require("../middleware/loginLimitter");
 
 router.get("/", getAllUsers);
 router.post("/", addUser);
 router.get("/:id", getUserById);
 router.put("/:id", updateUser);
 router.delete("/:id", deleteUserById);
-router.post("/login", login);
+router.post("/login", loginLimitter, login);
 
 module.exports = router;

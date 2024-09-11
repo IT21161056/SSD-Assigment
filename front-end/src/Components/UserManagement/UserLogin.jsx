@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import "../UserManagement/Login.css";
 import NavBar from "../NavBar";
-
 import { useContext } from "react";
 import { AuthContext } from "./AuthContext";
+import { jwtDecode } from "jwt-decode";
+import client_id from "../OAuthcredentials";
 
 const LoginForm = (params) => {
   const [regNumber, setregNumber] = useState("");
@@ -57,11 +58,19 @@ const LoginForm = (params) => {
         }
       })
       .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Login Failed",
-          text: "User Name OR Password In correct!",
-        });
+        if (err.response && err.response.status === 429) {
+          Swal.fire({
+            icon: "error",
+            title: "Too many login attempts",
+            text: err.response.data.message,
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Login Failed",
+            text: "User Name OR Password In correct!",
+          });
+        }
         console.log("failed");
       });
     // nav("/students")
@@ -76,72 +85,36 @@ const LoginForm = (params) => {
       // console.log(Response.data.lastName);
     });
   };
-  return (
-    // <div className="container">
-    //   <br />
-    //   <br />
-    //   <br />
-    //   <br />
-    //   <div className="card col-md-6 offset-md-3 offset-md-3"
-    //   style={{borderRadius:30}}>
-    //     <div className="card-body shadow-lg"
-    //     style={{borderRadius:30}}>
-    //       <div>
-    //         <center>
-    //           <h1>Login</h1>
-    //         </center>
-    //       </div>
 
-    //       <form onSubmit={submitClicked}>
-    //         <div className="form-group mt-5 row ">
-    //           <label className="col-sm-4  col-form-label">
-    //             Registeration Number :{" "}
-    //           </label>
-    //           <div className="col-sm-12 w-50 ">
-    //             <input
-    //               type="text"
-    //               className="form-control"
-    //               onChange={(e) => {
-    //                 setregNumber(e.target.value);
-    //               }}
-    //               required
-    //             ></input>
-    //           </div>
-    //         </div>
-    //         <br></br>
-    //         <div className="form-group  row">
-    //           <label className="col-sm-4  col-form-label">Password : </label>
-    //           <div className="col-sm-12  w-50">
-    //             <input
-    //               type="password"
-    //               className="form-control"
-    //               onChange={(e) => {
-    //                 setpassword(e.target.value);
-    //               }}
-    //               required
-    //             />
-    //           </div>
-    //         </div>
-    //         <br />
-    //         <div className="text-center">
-    //           <input
-    //             type="submit"
-    //             value="Sign in"
-    //             className="btn btn-primary "
-    //           />
-    //         </div>
-    //         <br />
-    //         <div className="text-center">
-    //           Create An Account{" "}
-    //           <Link to="/user/-1" className="text-center">
-    //             Sign up{" "}
-    //           </Link>
-    //         </div>
-    //         <br />
-    //       </form>
-    //     </div>
-    //   </div>
-    // </div>
+  const [user, setUser] = useState({});
+  //Google OAuth
+  const google = window.google;
+
+  const handleCallBackResponse = (response) => {
+    console.log("Encoded Jwt token: " + response.credential);
+    var userObject = jwtDecode(response.credential);
+    setUserDetails(userObject);
+    setIsAuthenticated(true);
+    setUserName(userObject.name);
+    setUser(userObject);
+
+    if (userObject) {
+      nav("/StudentHome");
+    }
+  };
+
+  useEffect(() => {
+    google.accounts.id.initialize({
+      client_id: client_id,
+      callback: handleCallBackResponse,
+    });
+    google.accounts.id.renderButton(document.getElementById("sign-in-div"), {
+      theme: "outline",
+      size: "large",
+    });
+  }, []);
+
+  return (
     <div>
       <div class="boxlog mt-5">
         <h1>Sign In</h1>
@@ -170,8 +143,17 @@ const LoginForm = (params) => {
           </div>
 
           <input type="submit" value="Sign in" className="sub " />
-        </form>
 
+          <div id="sign-in-div">
+            {/* {
+            user &&
+            <div>
+              <img src={user.picture}></img>
+              <h3>{user.name}</h3>
+            </div>
+          } */}
+          </div>
+        </form>
         <p>
           Don't have an accunt? <a href="/user/-1"> Create Account</a>
         </p>
