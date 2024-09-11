@@ -1,0 +1,14 @@
+GET http://localhost:5000/user
+
+###
+POST http://localhost:5000/user
+Content-Type: application/json
+{
+    "lastName":"Peiris",
+    "initials":"M.M.A.E",
+    "email":"anoj@gmail.com",
+    "mobileNumber":"0712345678",
+    "faculty":"Computing",
+    "regNumber":"STD00001",
+    "password":"123",
+}
