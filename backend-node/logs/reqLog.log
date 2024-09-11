@@ -7,3 +7,11 @@
 20240909	23:48:18	af0ddc64-b034-4cdd-b8ca-992394932099	GET	/se	undefined
 20240909	23:49:16	6f5dadb8-8920-4848-bed0-12e09dd67aee	GET	/se	undefined
 20240909	23:49:16	705fd81b-7f07-4468-8baf-c4cf85b2c892	GET	/css/style.css	undefined
+20240911	21:35:37	c41e12ea-80a3-4e66-bb80-51d3e0e0eddb	GET	/notice	http://localhost:3000
+20240911	21:35:37	dca6f400-ec93-4dc2-9d88-bea84974e182	GET	/notice	http://localhost:3000
+20240911	21:36:29	bb2186c3-5728-4e11-972a-ccd50bfe7315	GET	/notice	http://localhost:3000
+20240911	21:36:29	f5f17dac-cbe1-4d02-a2e1-1ea3fddf5129	GET	/notice	http://localhost:3000
+20240911	23:41:21	8cdefba5-42f1-4c99-93e3-8589e098cdee	POST	/user/login	undefined
+20240911	23:42:31	e5ebba93-e50a-4970-9f6f-58ddac8fc678	GET	/user/66e08440e9a4141f80a26cfe	undefined
+20240911	23:42:53	1903b1da-e9dd-4211-a07c-334f76bff125	GET	/user/	undefined
+20240911	23:45:15	c97bb7a9-9755-4aee-8650-c7aa272492ed	POST	/user/login	undefined

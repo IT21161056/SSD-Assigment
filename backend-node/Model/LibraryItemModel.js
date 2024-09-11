@@ -1,26 +1,31 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const { Schema, model } = mongoose;
 
 const LibraryItemSchema = new Schema({
-    faculty:{
-        type: String,        
-    },
-    year: {
-        type: String,       
-    },
-    subject: {
-        type: String,       
-    },
-    pdf:{
-        type: String,
-    },
-    cloudinary_id_img:{
-        type: String,
-    },
-    cloudinary_id_pdf:{
-        type: String,
-    },
+  faculty: {
+    type: String,
+    required: true,
+  },
+  year: {
+    type: String,
+    required: true,
+  },
+  subject: {
+    type: String,
+    required: true,
+  },
+  pdf: {
+    type: String,
+    required: true,
+  },
+  cloudinary_id_img: {
+    type: String,
+    required: true,
+  },
+  cloudinary_id_pdf: {
+    type: String,
+    required: true,
+  },
 });
 
-//exporting this model to mongo db
-module.exports= mongoose.model("LibraryItems", LibraryItemSchema);
+module.exports = model("LibraryItems", LibraryItemSchema);
