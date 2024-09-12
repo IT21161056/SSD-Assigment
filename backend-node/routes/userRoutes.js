@@ -9,8 +9,9 @@ const {
   updateUser,
 } = require("../controller/UserController");
 const loginLimitter = require("../middleware/loginLimitter");
+const apiRateLimitter = require("../middleware/apiRateLimitter");
 
-router.get("/", getAllUsers);
+router.get("/", apiRateLimitter, getAllUsers);
 router.post("/", addUser);
 router.get("/:id", getUserById);
 router.put("/:id", updateUser);
