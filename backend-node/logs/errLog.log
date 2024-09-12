@@ -1,2 +1,4 @@
 20240909	23:45:41	ff1a6e79-8a0c-4d88-8d9a-1b5f6a6c9e80	Error: ENOENT: no such file or directory, stat 'F:\4th yr 1st sem\SSD\SSD-Assigment\backend-node\views\index.html'	undefined	/	undefined
 20240909	23:45:45	e40c612e-c7af-417a-9600-dcd23094c1ed	Error: ENOENT: no such file or directory, stat 'F:\4th yr 1st sem\SSD\SSD-Assigment\backend-node\views\index.html'	undefined	/	undefined
+20240911	23:41:51	d16f4820-ff2e-4eb7-a51e-bebf2c61f1c0	MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://docs.atlas.mongodb.com/security-whitelist/	undefined	/user/login	undefined
+20240911	23:42:41	dc4d778e-1787-41fb-b3d6-c13571e82b30	MongooseError: Operation `users.findOne()` buffering timed out after 10000ms	undefined	/user/66e08440e9a4141f80a26cfe	undefined
