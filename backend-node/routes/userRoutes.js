@@ -7,7 +7,7 @@ const {
   getUserById,
   login,
   updateUser,
-} = require("../controller/userController");
+} = require("../controller/UserController");
 const loginLimitter = require("../middleware/loginLimitter");
 
 router.get("/", getAllUsers);

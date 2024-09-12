@@ -1,11 +1,10 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const { Schema, model } = mongoose;
 
 const SubjectSchema = new Schema({
-    faculty : {type: String},
-    year : {type : Number},
-    subject : {type: String},
-    
-})
+  faculty: { type: String },
+  year: { type: Number },
+  subject: { type: String },
+});
 
-module.exports = mongoose.model("Subject", SubjectSchema);
+module.exports = model("Subject", SubjectSchema);

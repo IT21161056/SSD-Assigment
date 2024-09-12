@@ -130,3 +130,11 @@
 20240911	20:39:30	3eafda13-a73b-4ffa-84ec-97f98409de26	GET	/user/undefined	http://localhost:3000
 20240911	20:39:30	d2c96961-6514-42e9-a61c-3e7f9531d6c4	GET	/notice	http://localhost:3000
 20240911	20:39:31	ac40d7dd-40e4-42ed-8ffa-904411384558	GET	/notice	http://localhost:3000
+20240911	21:35:37	c41e12ea-80a3-4e66-bb80-51d3e0e0eddb	GET	/notice	http://localhost:3000
+20240911	21:35:37	dca6f400-ec93-4dc2-9d88-bea84974e182	GET	/notice	http://localhost:3000
+20240911	21:36:29	bb2186c3-5728-4e11-972a-ccd50bfe7315	GET	/notice	http://localhost:3000
+20240911	21:36:29	f5f17dac-cbe1-4d02-a2e1-1ea3fddf5129	GET	/notice	http://localhost:3000
+20240911	23:41:21	8cdefba5-42f1-4c99-93e3-8589e098cdee	POST	/user/login	undefined
+20240911	23:42:31	e5ebba93-e50a-4970-9f6f-58ddac8fc678	GET	/user/66e08440e9a4141f80a26cfe	undefined
+20240911	23:42:53	1903b1da-e9dd-4211-a07c-334f76bff125	GET	/user/	undefined
+20240911	23:45:15	c97bb7a9-9755-4aee-8650-c7aa272492ed	POST	/user/login	undefined
