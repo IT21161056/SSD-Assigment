@@ -19,13 +19,29 @@ const UserList = () => {
   const { userDetails, setUserDetails, isAuthenticated, setIsAuthenticated } =
     useContext(AuthContext);
 
-  useEffect(() => {
-    UserServices.getAllUsers().then((res) => {
-      setUser(res.data);
-    });
-    // console.log(userDetails);
-    // console.log(isAuthenticated);
-  });
+  useEffect((retries) => {
+    const fetchUsers = async () => {
+      //retries = 3, delay = 1000
+      try {
+        const res = await UserServices.getAllUsers();
+        setUser(res.data);
+      } catch (error) {
+        if (error.response && error.response === 492) {
+          Swal.fire({
+            icon: "warning",
+            title: "Rate Limit Exceeded",
+            text: "You have made too many requests. Please wait a few minutes before trying again.",
+            timer: 5000, // Automatically close after 5 seconds
+            showConfirmButton: true,
+            //confirmButtonText: "Okay",
+          });
+        } else {
+          console.log("Error fetching users", error);
+        }
+      }
+    };
+    fetchUsers();
+  }, []);
 
   const AddStudent = (e) => {
     e.preventDefault();
