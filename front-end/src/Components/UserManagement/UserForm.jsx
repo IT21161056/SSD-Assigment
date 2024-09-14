@@ -27,32 +27,30 @@ const UserForm = (params) => {
   useEffect(() => {
     if (id == "-1") {
       setstatus("Register New ");
-
-      // console.log(id);
     } else {
       var x = document.getElementById("myDIV");
       x.style.display = "none";
       var x = document.getElementById("myDIV1");
       x.style.display = "none";
       setstatus("Update ");
-      // UserServices.getUser(id).then(
-      //     res=>{
-      //         setUser(res.data)
-      //         // console.log(user)
-      //     }
-      // )
-      UserServices.getUser(id).then((Response) => {
-        setlastName(Response.data.lastName);
-        setinitials(Response.data.initials);
-        setemail(Response.data.email);
-        setmobileNumber(Response.data.mobileNumber);
-        setfaculty(Response.data.faculty);
-        setregNumber(Response.data.regNumber);
-        setpassword(Response.data.password);
-        setrole(Response.data.role);
-        console.log(Response);
-      });
-      // console.log(id);
+      const fetchUserData = async () => {
+        try {
+          const response = await UserServices.getUser(id);
+          setlastName(response.data.lastName);
+          setinitials(response.data.initials);
+          setemail(response.data.email);
+          setmobileNumber(response.data.mobileNumber);
+          setfaculty(response.data.faculty);
+          setregNumber(response.data.regNumber);
+          setpassword(response.data.password);
+          setrole(response.data.role);
+          console.log(response);
+        } catch (error) {
+          console.log("Error fetching users", error);
+        }
+      };
+
+      fetchUserData();
     }
     if (isAuthenticated == true) {
       setRegStatus1("");
@@ -61,66 +59,61 @@ const UserForm = (params) => {
       setRegStatus1("Already Have An Account");
       setRegStatus2("Log In");
     }
-  }, []);
+  }, [id, isAuthenticated]);
 
   const submitClicked = (e) => {
     e.preventDefault();
-    if (id == "-1") {
-      const newuser = {
-        lastName,
-        initials,
-        email,
-        mobileNumber,
-        faculty,
-        regNumber,
-        password,
-        role,
-      };
+
+    const newuser = {
+      lastName,
+      initials,
+      email,
+      mobileNumber,
+      faculty,
+      regNumber,
+      password,
+      role,
+    };
+
+    if (id === "-1") {
+      // handle user creation
       UserServices.createUser(newuser)
         .then((res) => {
-          // setstudent(res.data)
-          console.log(res.data);
-          // if (res.data.role == "student"){
-          //     console.log("true:student");
-          //     // nav("/StudentHome")
-          // }else if (res.data.role == "admin"){
-          //     console.log("true:admin");
-          //     nav("/AdminHome")
-          // }
-          Swal.fire(" succesfull.");
+          Swal.fire("Registration succesfull.");
           if (isAuthenticated) {
             nav("/users");
           } else {
             nav("/login");
           }
-          // nav("/login");
         })
         .catch((err) => {
-          console.log("failed");
-          alert(
-            "Registeration faild : Enterd Registeration Number Already there"
-          );
+          if (err.response && err.response.status === 429) {
+            Swal.fire({
+              icon: "warning",
+              title: "Rate Limit Exceeded",
+              text: "'You have made too many registration attempts. Please wait a few minutes before trying again.'",
+              timer: 5000,
+              showConfirmButton: true,
+            });
+          } else {
+            console.log("failed");
+            Swal.fire("Registration failed. Please try again.");
+          }
         });
-      // nav("/users")
-      console.log(newuser);
     } else {
-      const newuser = {
-        lastName,
-        initials,
-        email,
-        mobileNumber,
-        faculty,
-        regNumber,
-        password,
-        role,
-      };
-      UserServices.updateUser(id, newuser);
-      Swal.fire(" succesfull.");
-      nav("/users");
-      console.log(newuser);
+      // handle server update
+      UserServices.updateUser(id, newuser)
+        .then(() => {
+          Swal.fire(" succesfull.");
+          nav("/users");
+        })
+        .catch((err) => {
+          Swal.fire("Update failed. Please try again.");
+          console.error("Update failed", err);
+        });
     }
   };
-  // console.log(user)
+
   return (
     <div className="container ">
       <br />
@@ -130,16 +123,17 @@ const UserForm = (params) => {
       <br />
       <br />
       <br />
-      <br /><br />
-      <br />
-      <br />
-      <br /><br />
       <br />
       <br />
       <br />
       <br />
-      
-      
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
       <div className=" boxmr shadow card col-md-8 offset-md-2 offset-md-2">
         <div className="card-body">
           <div>
