@@ -109,7 +109,7 @@ const NavBar = () => {
             ) : null}
 
             <li>
-              <a href="#!">Hello &nbsp;&nbsp;<b>{userName}</b></a>
+              <a href="#!">Hello &nbsp;&nbsp;<b>{userDetails.name}</b></a>
             </li>
             <li>
               <a
