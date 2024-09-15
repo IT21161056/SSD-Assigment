@@ -5,7 +5,7 @@ const validateAddNotice = [
     .notEmpty()
     .withMessage("Faculty is required")
     .isString()
-    .withMessage("Facuulty must be a string")
+    .withMessage("Faculty must be a string")
     .escape(),
   body("date")
     .notEmpty()

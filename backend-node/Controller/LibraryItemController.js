@@ -43,40 +43,35 @@ const addItem = tryCatch(async (req, res) => {
       return res.status(500).json({ error: "File upload error" });
     }
 
-    if (!req.files || req.files.length === 0) {
-      return res.status(400).json({ error: "No files were uploaded" });
-    }
-
     const fileInArray = [];
-    let pdff;
+    let pdff = null;
 
-    for (let file of req.files) {
-      const ext = path.extname(file.originalname).slice(1); // e.g., 'pdf'
-      const filePath = file.filename;
-      fileInArray.push(filePath);
+    if (req.files && req.files.length > 0) {
+      for (let file of req.files) {
+        const ext = path.extname(file.originalname).slice(1); // e.g., 'pdf'
+        const filePath = file.filename;
+        fileInArray.push(filePath);
 
-      if (ext === "pdf") {
-        try {
+        if (ext === "pdf") {
           pdff = await cloudinary.uploader.upload(
             `${path.resolve(__dirname, "../uploads")}/${filePath}`,
             { pages: true }
           );
-        } catch (uploadErr) {
-          return res.status(500).json({ error: "PDF upload failed" });
         }
       }
     }
 
-    const pdf = new PDF({
+    const item = new PDF({
       faculty: req.body.faculty,
       year: req.body.year,
       subject: req.body.subject,
-      pdf: pdff?.secure_url,
-      cloudinary_id_pdf: pdff?.public_id,
+      pdf: pdff ? pdff.secure_url : null,
+      cloudinary_id_pdf: pdff ? pdff.public_id : null,
+      other_files: fileInArray,
     });
 
-    await pdf.save();
-    return res.json(pdf);
+    const response = await item.save();
+    return res.status(201).json(response);
   });
 });
 
