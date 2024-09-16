@@ -151,10 +151,21 @@ const updateUser = tryCatch(async (req, res, next) => {
 //   res.status(200).json({ message: "User logged out" });
 // });
 
+const userByEmail = tryCatch(async (req, res) => {
+  const { email } = req.body;
+
+  const user = await UserModel.findOne({ email }).exec();
+
+  if (!user) throw new CustomError("User not found.", 404);
+
+  res.status(200).json(user);
+});
+
 module.exports = {
   updateUser,
   getUserById,
   deleteUserById,
   addUser,
   getAllUsers,
+  userByEmail,
 };
