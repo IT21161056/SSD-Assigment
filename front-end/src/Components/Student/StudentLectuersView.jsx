@@ -18,7 +18,7 @@ export default function StudentLectuersView() {
   const handleShow = () => setShow(true);
   const [lastName, setlastName] = useState("");
   const [initials, setinitials] = useState("");
-  const { userDetails, setUserDetails, isAuthenticated, setIsAuthenticated } =
+  const { user, setUser, isAuthenticated, setIsAuthenticated } =
     useContext(AuthContext);
 
   const getLecturesByid = (id) => {
@@ -54,13 +54,15 @@ export default function StudentLectuersView() {
         setLectureList(res.data);
         console.log(res.data);
       });
-      console.log(userDetails);
-      console.log(isAuthenticated);
     };
-    UserServices.getUser(userDetails.userID).then((Response) => {
-      setlastName(Response.data.lastName);
-      setinitials(Response.data.initials);
-    });
+
+    if (user._id) {
+      UserServices.getUser(user._id).then((Response) => {
+        setlastName(Response.data.lastName);
+        setinitials(Response.data.initials);
+      });
+    }
+
     getLectures();
   }, []);
 

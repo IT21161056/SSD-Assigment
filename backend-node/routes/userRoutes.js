@@ -5,10 +5,9 @@ const {
   deleteUserById,
   getAllUsers,
   getUserById,
-  login,
   updateUser,
 } = require("../controller/UserController");
-const loginLimitter = require("../middleware/loginLimitter");
+// const loginLimiter = require("../middleware/loginLimiter");
 const apiRateLimitter = require("../middleware/apiRateLimitter");
 
 router.get("/", apiRateLimitter, getAllUsers);
@@ -16,6 +15,5 @@ router.post("/", addUser);
 router.get("/:id", getUserById);
 router.put("/:id", updateUser);
 router.delete("/:id", deleteUserById);
-router.post("/login", loginLimitter, login);
 
 module.exports = router;

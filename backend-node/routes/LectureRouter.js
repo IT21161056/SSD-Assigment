@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { upload } = require("../utils/multer");
+const verifyJWT = require("../middleware/verifyJWT");
 
 const {
   getLectureById,
@@ -11,6 +12,8 @@ const {
 } = require("../Controller/LectureController");
 
 router.post("/", upload.array("uploaded_Image", 10), addLecture);
+
+router.use(verifyJWT);
 
 router.get("/", getAllLecture);
 router.post("/", addLecture);
