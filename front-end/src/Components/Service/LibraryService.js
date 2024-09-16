@@ -8,13 +8,13 @@ class LibraryService{
         //return axios.get(URL).then((res)=>res.data);
     }
     deleteItem(id){
-        return axios.delete(`http://localhost:5000/pdf/${id}`)
+        return axios.delete(`http://localhost:443/pdf/${id}`)
     }
     updateItem(id, item){
         //return axios.put(URL + '/' + noticeId);
     }
     getItemById(id){
-        return axios.get(`http://localhost:5000/pdf/${id}`);
+        return axios.get(`http://localhost:443/pdf/${id}`);
     }
    
 }

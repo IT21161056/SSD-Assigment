@@ -1,5 +1,11 @@
 20240909	23:45:41	ff1a6e79-8a0c-4d88-8d9a-1b5f6a6c9e80	Error: ENOENT: no such file or directory, stat 'F:\4th yr 1st sem\SSD\SSD-Assigment\backend-node\views\index.html'	undefined	/	undefined
 20240909	23:45:45	e40c612e-c7af-417a-9600-dcd23094c1ed	Error: ENOENT: no such file or directory, stat 'F:\4th yr 1st sem\SSD\SSD-Assigment\backend-node\views\index.html'	undefined	/	undefined
+20240911	23:37:43	738cd023-f742-424a-8029-1b4587bd9d8f	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	23:39:27	29cedb2d-9e8c-45d5-9afc-c401ce23e665	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	23:39:44	cf226c33-c955-43e8-9199-53bcbc98753b	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	23:45:11	b51bd97e-40e1-42ad-b6db-d5199d6edf05	CastError: Cast to ObjectId failed for value "login" (type string) at path "_id" for model "User"	undefined	/user/login	undefined
+20240916	09:49:20	e2ff1d53-022b-4e01-83a6-3f5c33219b5e	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240916	09:49:20	8a040e15-e8f1-47cb-b96c-b8780b34103e	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
 20240911	20:14:50	306e44fb-f181-4d3f-8843-931cdf75a7e3	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
 20240911	20:14:54	c89be82a-27ca-4202-95f8-ecec14bf3140	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
 20240911	20:14:55	bcae0561-0c93-4e51-9b41-7ad31af0e1e5	Error: Invalid email or password	undefined	/user/login	http://localhost:3000

@@ -1,3 +1,6 @@
+// Define a constant variable for the base URL
+// const BASE_URL = "https://localhost:443";
+
 import { api } from ".";
 
 class userServices {

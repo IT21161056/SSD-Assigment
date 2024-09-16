@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const URL = "http://localhost:5000/notice";
+const URL = "http://localhost:443/notice";
 
 class NoticeService{
     createNotice(notice){
