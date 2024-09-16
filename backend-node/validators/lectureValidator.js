@@ -25,14 +25,6 @@ const addLectureValidator = [
     .trim()
     .escape(),
   body("pdf").optional().isURL().withMessage("Invalid PDF URL format"),
-
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    next();
-  },
 ];
 
 const updateLectureValidator = [
@@ -55,43 +47,28 @@ const updateLectureValidator = [
     .trim()
     .escape(),
   body("pdf").optional().isURL().withMessage("Invalid PDF URL format"),
-
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    next();
-  },
 ];
 
 const getLectureByIdValidator = [
   param("id").isMongoId().withMessage("Invalid ID format"),
-
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    next();
-  },
 ];
 
 const deleteLectureValidator = [
   param("id").isMongoId().withMessage("Invalid ID format"),
-
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    next();
-  },
 ];
+
+const validateAndSanitize = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+};
 
 module.exports = {
   addLectureValidator,
   updateLectureValidator,
   getLectureByIdValidator,
   deleteLectureValidator,
+  validateAndSanitize,
 };

@@ -6,10 +6,26 @@ const {
   getAllItem,
   getItemById,
 } = require("../Controller/LibraryItemController");
+const {
+  validateAddLibraryItem,
+  getLibraryItemByIdValidator,
+  deleteLibraryItemByIdValidator,
+  validateAndSanitize,
+} = require("../validators/libraryItemValidator");
 
 router.get("/", getAllItem);
-router.get("/:id", getItemById);
-router.post("/add", addItem);
-router.delete("/:id", deleteItem);
+router.get(
+  "/:id",
+  getLibraryItemByIdValidator,
+  validateAndSanitize,
+  getItemById
+);
+router.post("/add", validateAddLibraryItem, validateAndSanitize, addItem);
+router.delete(
+  "/:id",
+  deleteLibraryItemByIdValidator,
+  validateAndSanitize,
+  deleteItem
+);
 
 module.exports = router;

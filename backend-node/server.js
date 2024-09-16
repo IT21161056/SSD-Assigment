@@ -34,10 +34,8 @@ app.use("/", rootRoute);
 app.use("/notice", noticeRouter);
 app.use("/user", userRouter);
 app.use("/Lecture", LectureRouter);
-app.use("/pdf", require("./routes/LibraryItemRouter"));
-// app.use("/libarary", libraryItemRouter);
-//app.use("/resource",resour )
-// app.use("/lecture", require("./Router/LectureRouter"));
+app.use("/lbitem", require("./routes/LibraryItemRouter"));
+app.use("/subject", require("./routes/subjectRoutes"));
 
 app.all("*", (req, res) => {
   res.status(404);

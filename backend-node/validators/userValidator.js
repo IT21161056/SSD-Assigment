@@ -1,6 +1,7 @@
 const { body, validationResult, param } = require("express-validator");
 
 // validator for adding a new user
+
 const addUserValidator = [
   body("lastName")
     .notEmpty()
@@ -19,11 +20,6 @@ const addUserValidator = [
     .trim()
     .escape(),
   body("faculty").notEmpty().withMessage("Faculty is required").trim().escape(),
-  body("faculty")
-    .notEmpty()
-    .withMessage("Registration number is required")
-    .trim()
-    .escape(),
   body("regNumber")
     .isLength({ min: 7, max: 7 })
     .withMessage("Registration number must be exact 7 chcarcters long")
@@ -34,15 +30,8 @@ const addUserValidator = [
     .withMessage("Password must beat least 6 characters")
     .trim()
     .escape(),
-
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    next();
-  },
 ];
+
 // validator for updating a user
 
 const updateUserValidator = [
@@ -71,14 +60,6 @@ const updateUserValidator = [
     .optional()
     .isLength({ min: 6 })
     .withMessage("Password must beat least 6 characters"),
-
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    next();
-  },
 ];
 
 // validator for user login
@@ -92,42 +73,26 @@ const loginValidator = [
   body("password")
     .notEmpty()
     .withMessage("Password must beat least 6 characters"),
-
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    next();
-  },
 ];
 
 // validator for retiveving user by ID
 const getUserByIdValidator = [
   param("id").isMongoId().withMessage("Invalid user id format"),
-
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    next();
-  },
 ];
 
 // validator for deletign a user by ID
 
 const deleteUserByValidator = [
   param("id").isMongoId().withMessage("Invalid user id format"),
-
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    next();
-  },
 ];
+
+const validateAndSanitize = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+};
 
 module.exports = {
   addUserValidator,
@@ -135,4 +100,5 @@ module.exports = {
   deleteUserByValidator,
   getUserByIdValidator,
   loginValidator,
+  validateAndSanitize,
 };

@@ -7,11 +7,22 @@ const {
   updateNotice,
   DeleteNotice,
 } = require("../Controller/NoticeController");
+const {
+  validateNoticeById,
+  validateDeleteNoticeById,
+  validateAddNotice,
+  validateAndSanitize,
+} = require("../validators/noticeValidator");
 
 router.get("/", getAllNotices);
-router.post("/", addNotice);
-router.get("/:id", getNoticeById);
+router.post("/", validateAddNotice, validateAndSanitize, addNotice);
+router.get("/:id", validateNoticeById, validateAndSanitize, getNoticeById);
 router.put("/:id", updateNotice);
-router.delete("/:id", DeleteNotice);
+router.delete(
+  "/:id",
+  validateDeleteNoticeById,
+  validateAddNotice,
+  DeleteNotice
+);
 
 module.exports = router;
