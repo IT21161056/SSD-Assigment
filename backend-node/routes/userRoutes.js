@@ -36,12 +36,5 @@ router.delete(
   validateAndSanitize,
   deleteUserById
 );
-router.post(
-  "/login",
-  loginLimitter,
-  loginValidator,
-  validateAndSanitize,
-  login
-);
 
 module.exports = router;
