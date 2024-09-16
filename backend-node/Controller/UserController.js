@@ -154,6 +154,8 @@ const updateUser = tryCatch(async (req, res, next) => {
 const userByEmail = tryCatch(async (req, res) => {
   const { email } = req.body;
 
+  if (!email) throw new CustomError("Email filed is empty", 400);
+
   const user = await UserModel.findOne({ email }).exec();
 
   if (!user) throw new CustomError("User not found.", 404);

@@ -22,6 +22,11 @@ class userServices {
     return api.put(`${URL}/${id}`, user);
   }
 
+  // mew route
+  getUserByEmail(email) {
+    return api.put(`${URL}/user-by-email`, { email });
+  }
+
   deleteUser(id) {
     return api.delete(`${URL}/${id}`);
   }
