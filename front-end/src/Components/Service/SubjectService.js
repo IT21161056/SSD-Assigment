@@ -2,10 +2,10 @@ import axios from "axios";
 
 class SubjectService{
     createSubject(subject){
-        return axios.post("http://localhost:5000/subject/add", subject);
+        return axios.post("http://localhost:443/subject/add", subject);
     }
     getAllSubject(){
-        return axios.get("http://localhost:5000/subject/");
+        return axios.get("http://localhost:443/subject/");
     }
     // deleteItem(id){
     //     return axios.delete(`http://localhost:5000/pdf/${id}`)

@@ -7,6 +7,8 @@ const connectDB = require("./config/db");
 const errorHandler = require("./middleware/errorHandler");
 const { logger } = require("./middleware/logger");
 const { corsOptions } = require("./config/corsOptions");
+const fs = require("fs");
+const https = require("https");
 
 // Routes
 const rootRoute = require("./routes/root");
@@ -22,7 +24,11 @@ connectDB();
 
 app.use(logger);
 
-app.use(cors(corsOptions));
+//app.use(cors());
+
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
 
 app.use(express.json());
 
@@ -39,6 +45,10 @@ app.use("/pdf", require("./routes/LibraryItemRouter"));
 //app.use("/resource",resour )
 // app.use("/lecture", require("./Router/LectureRouter"));
 
+app.get('/api/hello', (req, res) => {
+  res.json({ message: 'Hello from the secure development server!' });
+});
+
 app.all("*", (req, res) => {
   res.status(404);
   if (req.accepts("html")) {
@@ -53,6 +63,35 @@ app.all("*", (req, res) => {
 // Error handling
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+
+// Load the SSL Certificate and Key
+// const options = {
+//   key: fs.readFileSync("server.key", 'utf8'), // Path to the private key
+//   cert: fs.readFileSync("server.cert", 'utf8') // Path to the self-signed certificate
+// };
+
+const privateKey = fs.readFileSync('server.key', 'utf8');
+const certificate = fs.readFileSync('server.cert', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
+console.log(privateKey);
+console.log(certificate);
+
+
+ 
+// Create HTTPS server
+const httpsServer = https.createServer(credentials, app);
+ 
+httpsServer.listen(443, () => {
+  console.log('HTTPS Server running on https://localhost:5000');
 });
+ 
+
+ 
+
+// // Create an HTTPS server
+// https.createServer(options, app).listen(5000, () => {
+//   console.log("HTTPS Server running on port 443");
+// });

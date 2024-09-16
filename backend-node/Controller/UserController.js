@@ -130,6 +130,7 @@ const updateUser = tryCatch(async (req, res, next) => {
 
 const login = tryCatch(async (req, res, next) => {
   const { regNumber, password } = req.body;
+  console.log(req.body);
 
   const user = await UserModel.findOne({ regNumber: regNumber });
 
