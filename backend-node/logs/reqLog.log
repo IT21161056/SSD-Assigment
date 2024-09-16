@@ -37,3 +37,14 @@
 20240916	09:53:46	7e3cf796-a962-4171-81f6-94e1ce211425	POST	/user/login	http://localhost:3000
 20240916	09:54:56	f266dc84-3464-4c90-b0a2-069ec8afb7b8	OPTIONS	/user/login	http://localhost:3000
 20240916	09:54:56	0e4549b3-842d-4c64-98a9-7215d9887a64	POST	/user/login	http://localhost:3000
+20240916	10:06:20	f5745639-6005-4b64-8449-8a9e1cc2d4da	OPTIONS	/user/	http://localhost:3000
+20240916	10:06:20	2424d3c1-c754-4c3f-876a-8943ebc34c92	POST	/user/	http://localhost:3000
+20240916	10:06:58	6f03521e-640d-4b68-98a8-86d36ef8fb45	OPTIONS	/user/	http://localhost:3000
+20240916	10:06:58	4a6b9e66-b074-466a-b78a-81fc4ece53f0	POST	/user/	http://localhost:3000
+20240916	10:06:58	9a5507af-d246-4eb0-9f04-bb56eec572fe	Too many RequestsL Too many request attempts from this IP, please try again after a 60 second pause	POST	/	
+            http://localhost:3000
+20240916	10:08:12	e57daba7-798a-41b5-beaf-c025ce333741	OPTIONS	/user/	http://localhost:3000
+20240916	10:08:12	5fa4e516-59e2-46af-8cf5-bd05ea87bb66	POST	/user/	http://localhost:3000
+20240916	10:11:20	074acf12-7777-4514-984b-d358f264e631	OPTIONS	/user/login	http://localhost:3000
+20240916	10:11:20	b7c25f66-1ad7-49c5-bbe1-28659d868e87	POST	/user/login	http://localhost:3000
+20240916	10:11:20	2fc76e82-8f15-4737-9a74-e12d9f0c6229	GET	/user/undefined	http://localhost:3000
