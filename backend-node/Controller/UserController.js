@@ -22,7 +22,7 @@ const addUser = tryCatch(async (req, res, next) => {
     password,
   } = req.body;
 
-  const existingUser = await UserModel.findOne({ regNumber: regNumber });
+  const existingUser = await UserModel.findOne({ email: email });
 
   if (existingUser) throw new CustomError("User Is already existing!", 409);
 
