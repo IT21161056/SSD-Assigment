@@ -6,6 +6,7 @@ const {
   getAllUsers,
   getUserById,
   updateUser,
+  userByEmail,
 } = require("../controller/UserController");
 
 // const loginLimiter = require("../middleware/loginLimiter");
@@ -36,5 +37,7 @@ router.delete(
   validateAndSanitize,
   deleteUserById
 );
+
+router.post("/user-by-email", userByEmail);
 
 module.exports = router;
