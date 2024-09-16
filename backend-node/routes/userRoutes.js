@@ -5,11 +5,12 @@ const {
   deleteUserById,
   getAllUsers,
   getUserById,
-  login,
   updateUser,
-} = require("../Controller/UserController");
-const loginLimitter = require("../middleware/loginLimitter");
+} = require("../controller/UserController");
+
+// const loginLimiter = require("../middleware/loginLimiter");
 const apiRateLimitter = require("../middleware/apiRateLimitter");
+
 const {
   addUserValidator,
   updateUserValidator,

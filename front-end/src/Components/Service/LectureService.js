@@ -1,22 +1,25 @@
 import axios from "axios";
+import { api } from ".";
 
 const URL = "http://localhost:5000/Lecture";
 
 class LectureService {
   createLecture(lecture) {
-    return axios.post(URL, lecture);
+    return api.post("/Lecture", lecture);
   }
   getAllLecturers() {
-    return axios.get(URL);
+    return api.get(`/Lecture`);
   }
   deleteLecture(Id) {
-    return axios.delete(`http://localhost:5000/Lecture/${Id}`);
+    return api.delete(`/Lecture/${Id}`);
   }
+
   updateNotice(noticeId, notice) {
-    return axios.put(URL + "/" + noticeId);
+    return api.put(URL + "/" + noticeId);
   }
+
   getLectureById(id) {
-    return axios.get(`http://localhost:5000/Lecture/${id}`);
+    return api.get(`/Lecture/${id}`);
   }
 }
 export default new LectureService();

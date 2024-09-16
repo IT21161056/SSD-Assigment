@@ -2,35 +2,40 @@ import React, { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
+export default function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const [userDetails, setUserDetails] = useState(() => {
-        const savedUserDetails = sessionStorage.getItem("userDetails");
-        return savedUserDetails ? JSON.parse(savedUserDetails) : [];
-    });
+  useEffect(() => {
+    // Get user from localStorage when component mounts
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setUser(storedUser);
+      setIsAuthenticated(true);
+    }
+  }, []);
 
-    const [isAuthenticated, setIsAuthenticated] = useState(() => {
-        const savedIsAuthenticated = sessionStorage.getItem("isAuthenticated");
-        return savedIsAuthenticated === "true";
-    });
+  useEffect(() => {
+    // If user changes, update localStorage and isAuthenticated state
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+      setIsAuthenticated(true);
+    } else {
+      localStorage.removeItem("user");
+      setIsAuthenticated(false);
+    }
+  }, [user]);
 
-    const [userName, setUserName] = useState(() => {
-        return sessionStorage.getItem("userName") || "";
-    });
-
-    useEffect(() => {
-        sessionStorage.setItem("userDetails", JSON.stringify(userDetails));
-        sessionStorage.setItem("isAuthenticated", isAuthenticated.toString());
-        sessionStorage.setItem("userName", userName);
-    }, [userDetails, isAuthenticated, userName]);
-
-    return (
-        <AuthContext.Provider
-            value={{ userDetails, setUserDetails, isAuthenticated, setIsAuthenticated, userName, setUserName }}
-        >
-            {children}
-        </AuthContext.Provider>
-    );
-};
-
-export default AuthProvider;
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        setUser,
+        isAuthenticated,
+        setIsAuthenticated,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+}

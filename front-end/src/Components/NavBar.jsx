@@ -10,14 +10,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
-  const {
-    userDetails,
-    setUserDetails,
-    isAuthenticated,
-    setIsAuthenticated,
-    userName,
-    setUserName,
-  } = useContext(AuthContext);
+  const { user, setUser, setIsAuthenticated, isAuthenticated } =
+    useContext(AuthContext);
 
   const [navbar, setNavbar] = useState();
   const navigate = useNavigate();
@@ -43,7 +37,7 @@ const NavBar = () => {
             </a>
           </div>
           <ul class="nav-list">
-            {userDetails.role == "admin" ? (
+            {user.role == "admin" ? (
               <>
                 <li>
                   <a
@@ -82,7 +76,7 @@ const NavBar = () => {
                   </a>
                 </li>
               </>
-            ) : userDetails.role == "student" ? (
+            ) : user.role == "student" ? (
               <>
                 <li>
                   <a
@@ -94,7 +88,7 @@ const NavBar = () => {
                   </a>
                 </li>
               </>
-            ) : userDetails.role == "lecture" ? (
+            ) : user.role == "lecture" ? (
               <>
                 <li>
                   <a
@@ -108,16 +102,21 @@ const NavBar = () => {
               </>
             ) : null}
 
-            <li>
-              <a href="#!">Hello &nbsp;&nbsp;<b>{userDetails.name}</b></a>
-            </li>
+            {user && (
+              <li>
+                <a href="#!">
+                  Hello &nbsp;&nbsp;<b>{user.lastName}</b>
+                </a>
+              </li>
+            )}
             <li>
               <a
                 href="/"
                 onClick={() => {
-                  setUserDetails(null);
+                  UserServices.logout();
+                  localStorage.removeItem("accessToken");
+                  setUser(null);
                   setIsAuthenticated(false);
-                  setUserName(null);
                 }}
               >
                 Logout
@@ -142,9 +141,8 @@ const NavBar = () => {
               <a
                 href="/"
                 onClick={() => {
-                  setUserDetails(null);
+                  setUser(null);
                   setIsAuthenticated(false);
-                  setUserName(null);
                 }}
               >
                 log in
@@ -155,7 +153,7 @@ const NavBar = () => {
       </>
     );
   };
-  // user role eka ganna one nm (userDetails.role) eken enawa
+  // user role eka ganna one nm (user.role) eken enawa
   return (
     <div>
       <section class="navigation">
