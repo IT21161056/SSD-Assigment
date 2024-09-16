@@ -7,13 +7,41 @@ const {
   getUserById,
   updateUser,
 } = require("../controller/UserController");
+
 // const loginLimiter = require("../middleware/loginLimiter");
 const apiRateLimitter = require("../middleware/apiRateLimitter");
 
-router.get("/", apiRateLimitter, getAllUsers);
-router.post("/", addUser);
-router.get("/:id", getUserById);
-router.put("/:id", updateUser);
-router.delete("/:id", deleteUserById);
+const {
+  addUserValidator,
+  updateUserValidator,
+  deleteUserByValidator,
+  getUserByIdValidator,
+  loginValidator,
+  validateAndSanitize,
+} = require("../validators/userValidator");
+
+router.get("/", getAllUsers);
+router.post(
+  "/",
+  apiRateLimitter,
+  addUserValidator,
+  validateAndSanitize,
+  addUser
+);
+router.get("/:id", getUserByIdValidator, validateAndSanitize, getUserById);
+router.put("/:id", updateUserValidator, validateAndSanitize, updateUser);
+router.delete(
+  "/:id",
+  deleteUserByValidator,
+  validateAndSanitize,
+  deleteUserById
+);
+router.post(
+  "/login",
+  loginLimitter,
+  loginValidator,
+  validateAndSanitize,
+  login
+);
 
 module.exports = router;

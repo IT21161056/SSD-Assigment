@@ -17,8 +17,7 @@ const getAllLecture = tryCatch(async (req, res, next) => {
 
 //add
 const addLecture = tryCatch(async (req, res) => {
-  console.log(req.files.length);
-  console.log("Files", fileInArray);
+  console.log(req.files);
 
   const {
     year,
@@ -31,36 +30,35 @@ const addLecture = tryCatch(async (req, res) => {
     meeting_link,
   } = req.body;
 
-  let pdf;
+  let pdfData = null;
 
-  for (let i = 0; i < fileInArray.length; i++) {
-    let fileExtension = fileInArray[i][0].split(".")[1];
-    console.log(path.resolve(__dirname, "../uploads"));
-
-    if (fileExtension == "pdf") {
-      pdf = await cloudinary.uploader.upload(
-        `${path.resolve(__dirname, "../uploads")}/${fileInArray[i][0]}`,
-        { pages: true }
-      );
+  if (req.files && req.files.length > 0) {
+    for (let file of req.files) {
+      let fileExtension = path.extname(file.originalname).toLowerCase();
+      if (fileExtension === ".pdf") {
+        pdfData = await cloudinary.uploader.upload(file.path, {
+          pages: true,
+        });
+      }
     }
   }
 
-  const newPDF = new LectureModel({
+  const newLecture = new LectureModel({
     year,
     semester,
     topic,
     subject,
     date,
     time,
-    description: discription,
+    discription: discription,
     meeting_link,
-    pdf: pdf.secure_url,
-    cloudinary_id_pdf: pdf.public_id,
+    pdf: pdfData ? pdfData.secure_url : null,
+    cloudinary_id_pdf: pdfData ? pdf.public_id : null,
   });
 
-  const response = await newPDF.save();
+  const response = await newLecture.save();
 
-  res.json(response);
+  res.status(201).json(response);
 });
 
 //getByid
@@ -80,7 +78,7 @@ const deleteLecture = tryCatch(async (req, res, next) => {
 
   if (!lecture) throw new CustomError("cannot delete");
 
-  return res.status(200).json({ message: `product ${id} deleted` });
+  return res.status(200).json({ message: `Lecture ${id} deleted` });
 });
 
 // update
@@ -98,37 +96,36 @@ const updateLecture = tryCatch(async (req, res) => {
     meeting_link,
   } = req.body;
 
-  console.log(req.files.length);
-  console.log("Files", fileInArray);
-  // let img;
+  let pdfData = null;
 
-  let pdff;
-
-  for (let i = 0; i < fileInArray.length; i++) {
-    let fileext = fileInArray[i][0].split(".")[1];
-    console.log(path.resolve(__dirname, "../uploads"));
-
-    if (fileext == "pdf")
-      pdff = await cloudinary.uploader.upload(
-        `${path.resolve(__dirname, "../uploads")}/${fileInArray[i][0]}`,
-        { pages: true }
-      );
+  if (req.files && equal.files.length > 0) {
+    for (let file of req.files) {
+      let fileExtension = path.extname(file.originalname).toLowerCase();
+      if (fileExtension === ".pdf") {
+        pdfData = await cloudinary.uploader.upload(file.path, { pages: true });
+      }
+    }
   }
-  let pdf = await LectureModel.findByIdAndUpdate(id, {
-    year,
-    semester,
-    topic,
-    subject,
-    date,
-    time,
-    description: discription,
-    meeting_link,
-    pdf: pdff.secure_url,
-    cloudinary_id_pdf: pdff.public_id,
-  });
-  await pdf.save();
 
-  res.json(pdf);
+  let updatedLecture = await LectureModel.findByIdAndUpdate(
+    id,
+    {
+      year,
+      semester,
+      topic,
+      subject,
+      date,
+      time,
+      discription: discription,
+      meeting_link,
+      pdf: pdfData ? pdfData.secure_url : undefined,
+      cloudinary_id_pdf: pdfData ? pdfData.public_id : undefined,
+    },
+    { new: true }
+  );
+
+  if (!updatedLecture) throw new CustomError("Not found");
+  res.json(updatedLecture);
 });
 
 module.exports = {

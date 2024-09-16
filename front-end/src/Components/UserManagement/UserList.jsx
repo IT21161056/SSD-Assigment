@@ -19,25 +19,13 @@ const UserList = () => {
   const { userDetails, setUserDetails, isAuthenticated, setIsAuthenticated } =
     useContext(AuthContext);
 
-  useEffect((retries) => {
+  useEffect(() => {
     const fetchUsers = async () => {
-      //retries = 3, delay = 1000
       try {
         const res = await UserServices.getAllUsers();
         setUser(res.data);
       } catch (error) {
-        if (error.response && error.response === 492) {
-          Swal.fire({
-            icon: "warning",
-            title: "Rate Limit Exceeded",
-            text: "You have made too many requests. Please wait a few minutes before trying again.",
-            timer: 5000, // Automatically close after 5 seconds
-            showConfirmButton: true,
-            //confirmButtonText: "Okay",
-          });
-        } else {
-          console.log("Error fetching users", error);
-        }
+        console.log("Error fetching users", error);
       }
     };
     fetchUsers();

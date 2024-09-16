@@ -3,9 +3,21 @@ const router = express.Router();
 const {
   addSubject,
   getAllSubject,
-} = require("../controller/SubjectController");
+  deleteSubject,
+} = require("../Controller/SubjectController");
+const {
+  subjectValidator,
+  deleteSubjectValidator,
+  validateAndSanitize,
+} = require("../validators/subjectValidator");
 
 router.get("/", getAllSubject);
-router.post("/add", addSubject);
+router.post("/add", subjectValidator, validateAndSanitize, addSubject);
+router.delete(
+  "/:id",
+  deleteSubjectValidator,
+  validateAndSanitize,
+  deleteSubject
+);
 
 module.exports = router;

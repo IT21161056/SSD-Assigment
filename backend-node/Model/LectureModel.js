@@ -35,7 +35,7 @@ const LectureSchema = new Schema({
   },
   pdf: {
     type: String,
-    required: true,
+    //required: true,
   },
   cloudinary_id_img: {
     type: String,
@@ -43,13 +43,5 @@ const LectureSchema = new Schema({
   cloudinary_id_pdf: {
     type: String,
   },
-  // slide: {
-  //   type: String,
-  //   required: true,
-  // },
-  // tutorial: {
-  //   type: String,
-  //   required: true,
-  // },
 });
 module.exports = model("Lecture", LectureSchema);
