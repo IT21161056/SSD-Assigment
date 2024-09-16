@@ -817,3 +817,15 @@
 20240916	13:03:05	a5766789-6813-4d9c-8afb-fe78fa5621e8	GET	/Lecture	http://localhost:3000
 20240916	13:03:40	9e6421f9-3ebd-495a-b725-f6853b4fbe4c	OPTIONS	/auth/logout	http://localhost:3000
 20240916	13:03:40	f592d358-f98f-4349-85e3-324900ac8f7f	POST	/auth/logout	http://localhost:3000
+20240916	13:17:21	353849bf-7b88-46d2-96af-ed12703f41a0	OPTIONS	/auth	http://localhost:3000
+20240916	13:17:21	8dc59992-aaf1-43c8-91e2-1a72ffb6557a	POST	/auth	http://localhost:3000
+20240916	13:17:22	a48482e3-8248-4045-b24c-5329ba0c14ed	GET	/notice	http://localhost:3000
+20240916	13:17:22	d0ba3443-a0df-45f6-a1c2-592bb5c1496a	GET	/notice	http://localhost:3000
+20240916	13:17:24	31139989-2f2b-4e7c-9ef4-d598632934af	OPTIONS	/user/66e703ab652707d57d1ba3c2	http://localhost:3000
+20240916	13:17:24	960e8405-d550-4566-8624-57101c32476b	OPTIONS	/Lecture	http://localhost:3000
+20240916	13:17:24	a902946f-ec72-48f5-a7e4-b7cb87729684	OPTIONS	/user/66e703ab652707d57d1ba3c2	http://localhost:3000
+20240916	13:17:24	1548c1df-a214-4328-ada1-2dec9d57e8c1	OPTIONS	/Lecture	http://localhost:3000
+20240916	13:17:24	a30c9f19-d161-426a-849b-81b289780ed6	GET	/user/66e703ab652707d57d1ba3c2	http://localhost:3000
+20240916	13:17:24	c3af9ddf-952c-4f67-82fa-ec8e349f0c95	GET	/Lecture	http://localhost:3000
+20240916	13:17:24	9d1d2d7e-2a3b-4c61-b630-eae4b1bea6e1	GET	/user/66e703ab652707d57d1ba3c2	http://localhost:3000
+20240916	13:17:24	7c1e91ec-33d7-4303-af54-f1ab2e15b668	GET	/Lecture	http://localhost:3000
