@@ -6,3 +6,138 @@
 20240911	23:45:11	b51bd97e-40e1-42ad-b6db-d5199d6edf05	CastError: Cast to ObjectId failed for value "login" (type string) at path "_id" for model "User"	undefined	/user/login	undefined
 20240916	09:49:20	e2ff1d53-022b-4e01-83a6-3f5c33219b5e	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
 20240916	09:49:20	8a040e15-e8f1-47cb-b96c-b8780b34103e	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:14:50	306e44fb-f181-4d3f-8843-931cdf75a7e3	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:14:54	c89be82a-27ca-4202-95f8-ecec14bf3140	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:14:55	bcae0561-0c93-4e51-9b41-7ad31af0e1e5	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:14:57	2cb6553c-dac8-4daa-a080-11fbb382bc71	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:14:59	6d86b4b8-aa9c-4a8a-a6b0-089cc1202f34	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:15:01	34b8da9b-e218-4ff8-a2b7-0ea69a0c7f2b	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:15:03	d77823af-1371-4e7c-9b63-fd699809623e	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:15:05	e50d9878-3663-4e61-be80-271a914bd848	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:15:07	ce934999-46bf-4872-94a6-74c73a01d5a0	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:29:00	1a5be642-7536-468d-a034-7d88e7c7c6f3	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:29:03	6bf5b3c5-67c1-41c7-896e-c148fbfd3580	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:29:06	4b9f82f2-4226-4ac3-9d9d-ec48c44ee388	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:29:09	2b5922ab-bb7b-45db-8ea0-b383f4045e71	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:29:11	648a4d6b-abdd-4e8b-b74e-1ce52e8281c4	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:29:14	1876af22-87e4-4ee2-9255-674e26621c9b	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:29:14	3e6ad945-fb65-43f2-8b22-da61d087ebc1	Error: Cannot set headers after they are sent to the client	undefined	/user/login	http://localhost:3000
+20240911	20:29:19	54a1b906-f933-472c-ad56-3c1df2f2ccc6	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:29:19	1dbbd27e-10ec-4425-9d73-50c36bcd68b7	Error: Cannot set headers after they are sent to the client	undefined	/user/login	http://localhost:3000
+20240911	20:30:27	25d25302-5f99-420f-9c69-e19c7b05d9bd	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:30:30	ea39c805-081b-4367-a6b3-49f44221faaa	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:30:40	237f3773-b936-4507-9580-f26e6c98531e	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:30:47	8ba852c6-3f08-4aaa-be7f-ef4d18879a2e	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:30:51	ba002ff7-2628-4944-b17a-545523d254c9	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:30:57	4c168ac8-b272-42b9-b1aa-22a5225414ec	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:30:57	78fb48a9-2433-4b4f-bccf-f4b2b0ed896c	Error: Cannot set headers after they are sent to the client	undefined	/user/login	http://localhost:3000
+20240911	20:31:35	ff35eb01-8f8b-42ad-89cd-3bf71041656e	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:31:39	e92190a1-b626-4096-8952-7eae8bd98f64	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:31:40	6575729d-172a-424b-8306-672f967650ca	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:31:41	80be7a97-f77b-4525-a79a-8763e7f1071d	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:31:42	0f98c98b-8365-4238-9bb0-b09707e8cbf8	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:31:46	b9d69f1b-517a-4a42-8ab9-5f07428b8c46	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:31:50	290ee385-6dfa-4ad0-9f7d-1d42b872e061	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:31:56	0b719262-e733-4da1-bd5c-6cfcdd0e261f	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:31:57	914fa86e-e9bc-4ad1-8ff1-59cee204ee9f	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:31:58	1138ab3c-922a-488d-b3e5-dc25bd21d381	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:31:59	d84b1421-0fde-4614-b8e4-cf7f7836c494	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:32:00	11915bd6-60ee-459e-81d5-049701a9a8d3	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:32:00	22a81d6b-41e2-4fd5-b34e-107dc99e0d77	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:32:38	a289c26a-5945-416d-abe3-7a44e9ea3347	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:32:41	e5bdb6ed-2f28-4e02-abb4-2aae016aa7dd	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:32:57	c27bc756-f49a-48f9-a795-6228b933db1b	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:32:58	c863b7bb-ba22-42d0-a114-52b27bb105a0	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:33:00	6de0fbcd-1403-4b8f-adb9-f32f2e5f1662	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:33:01	7e8b3c53-034b-4428-a930-e949619b1e40	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:33:08	cbaf65a9-ea36-42c4-8faf-6fc7b4ca0a24	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:33:34	152e96ff-36ee-432e-826d-8ed3f59bd78b	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:33:36	9a36f59c-91ec-4347-9ba9-cf247840b6cc	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:33:37	eddcd645-ee62-42e7-8c4a-c5ae69b3c2e7	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:33:38	6b0c1dea-1e4e-4196-91d2-869ce941eb5f	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:33:39	7f155ba5-ebd1-44ff-b0fb-525ac2c27603	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:33:41	27597451-ccc5-4bbb-ad03-a9c491863888	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:33:41	4571f661-1315-4bd7-a047-8658a2057de2	Error: Cannot set headers after they are sent to the client	undefined	/user/login	http://localhost:3000
+20240911	20:33:42	49b0f5fe-da4d-41ae-b06e-e4113aa80417	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:33:42	f85e033f-88cb-4bae-b8a9-22fe001146d3	Error: Cannot set headers after they are sent to the client	undefined	/user/login	http://localhost:3000
+20240911	20:33:43	aa0dde95-2ba0-4ee1-993e-b068017040a0	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:33:43	27b58a16-4b76-4dfb-bb6a-262415f4940b	Error: Cannot set headers after they are sent to the client	undefined	/user/login	http://localhost:3000
+20240911	20:33:44	14465a91-7f8d-4221-85cb-56e65b2533c2	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:33:44	e91ef811-128f-4d45-8c40-b483bbd5bc7b	Error: Cannot set headers after they are sent to the client	undefined	/user/login	http://localhost:3000
+20240911	20:35:10	39ad28a5-dd65-47f5-bb94-93b9468eeafc	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:35:11	54634a08-1372-4cd8-8d5a-e73bbb8ea23e	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:35:12	830206b6-7ca4-42f8-9305-a6e4d12e5442	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:35:13	56cd76a3-5ff7-4f0c-bbf8-f0a788e9a167	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:35:14	35de0560-1e0d-4fdf-99db-dd01abb0d515	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:35:15	6b28af85-4967-42f5-8711-c3fc4768b1bf	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:35:16	a1c5c8af-e773-4b00-92f4-973095cf65b6	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:35:17	359baceb-4e7a-40ae-8fab-7ba775d3bdc6	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:35:17	6dc56eee-d379-4b1f-aba8-75eb75936a7d	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:36:04	0c4a6922-f4c8-472a-86d0-e91e41541aea	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:36:05	96964038-99d5-453d-a44d-08e39c9cf221	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:36:06	9357bbb0-cc76-4726-adb7-361da82ed2c3	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:36:07	98911da4-9940-4df4-b63d-bee9c4e0325c	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:36:08	aa27e93a-15c4-42f4-876b-e3b0048c26a7	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:36:09	571f569d-9b30-48ff-b741-58c8323085b7	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:36:25	37615317-89f8-4f84-8c4e-4c8104eb6058	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:36:27	0a57e1f9-21d7-49ee-9bf8-711ac67ff398	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:36:28	a7e0e947-97e5-429b-9c74-758d517f3611	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:36:30	f2cfa731-db4b-4f32-8a14-7e3f22ef3add	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:36:31	2ccd0753-97c0-4805-95e4-1c60ca1ec5f1	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:36:32	3b782762-0fa0-468f-b895-9e728c69025b	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:36:34	964cc843-658f-4d6e-a709-4fb12514a69c	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:36:35	d82feadd-a325-4f8a-89a8-5556e7bfc45f	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:36:50	f4ef029b-f502-48a9-83f5-09744f547663	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:36:53	cce388de-868c-4019-b78f-3b3350c5391a	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:37:24	c3be481b-51b7-4ab7-80bb-0d5ebcd8cda4	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:37:26	8aaeeefd-e024-49d5-98d7-f2e31e766fc1	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:37:29	7fc0e1c0-f13c-4297-b5e0-68939314b55f	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:37:31	d06f466f-12d9-4e99-9a9d-09be6825c7c7	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:37:33	cb29e3f4-3273-49f7-b68e-0af15e73163a	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:37:35	a9873598-eb80-4e4f-a5b0-340474d7792d	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:37:42	39ab71d6-7777-461f-aada-233710940459	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:37:44	f0a9fdbb-d5b0-43a4-b5bf-9959e47fee76	Too many RequestsL Too many login attemptsfrom this IP, please try again after a 60 second pause	POST	/login	
+            http://localhost:3000
+20240911	20:39:17	8bd64ca9-562a-4f34-b686-9b506d6abfde	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:39:27	2afb6027-9439-4f68-b1fd-86a4c2eb0112	Error: Invalid email or password	undefined	/user/login	http://localhost:3000
+20240911	20:39:30	f26bae05-bb56-478c-8777-15c9f7368419	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"	undefined	/user/undefined	http://localhost:3000
+20240911	23:41:51	d16f4820-ff2e-4eb7-a51e-bebf2c61f1c0	MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://docs.atlas.mongodb.com/security-whitelist/	undefined	/user/login	undefined
+20240911	23:42:41	dc4d778e-1787-41fb-b3d6-c13571e82b30	MongooseError: Operation `users.findOne()` buffering timed out after 10000ms	undefined	/user/66e08440e9a4141f80a26cfe	undefined

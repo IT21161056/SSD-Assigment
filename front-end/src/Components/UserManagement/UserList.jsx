@@ -20,12 +20,16 @@ const UserList = () => {
     useContext(AuthContext);
 
   useEffect(() => {
-    UserServices.getAllUsers().then((res) => {
-      setUser(res.data);
-    });
-    // console.log(userDetails);
-    // console.log(isAuthenticated);
-  });
+    const fetchUsers = async () => {
+      try {
+        const res = await UserServices.getAllUsers();
+        setUser(res.data);
+      } catch (error) {
+        console.log("Error fetching users", error);
+      }
+    };
+    fetchUsers();
+  }, []);
 
   const AddStudent = (e) => {
     e.preventDefault();

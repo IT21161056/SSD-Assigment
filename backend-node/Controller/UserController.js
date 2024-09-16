@@ -139,7 +139,7 @@ const login = tryCatch(async (req, res, next) => {
 
     res.status(200).json({
       _id: user._id,
-      name: user.name,
+      name: user.lastName,
       email: user.email,
       role: user.role,
     });

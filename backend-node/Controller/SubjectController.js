@@ -1,34 +1,45 @@
 const SubjectModel = require("../Model/SubjectModel");
+const { tryCatch } = require("../utils/tryCatchWrapper");
+const { CustomError } = require("../exceptions/baseException");
 
-const getAllSubject = async (req,res, next) =>{
-    let subjects;
-    try{
-        subjects = await SubjectModel.find();
-    }catch(error){
-        console.log(error);
-    }if(!subjects){
-        return res.status(404).json({message: "not found"})
-    }
-    return res.status(200).json(subjects)
-}
+const getAllSubject = tryCatch(async (req, res, next) => {
+  const subjects = await SubjectModel.find();
 
+  if (!subjects) throw new CustomError("Resources Not found!", 404);
 
+  return res.status(200).json(subjects);
+});
 
-const addSubject = async(req,res,next)=>{
-    const {faculty,year,subject} =req.body;
-    let sub;
-    try {
-        sub = new SubjectModel({
-            faculty,year,subject
-        });
-        await sub.save();
-    } catch (error) {
-        console.log(error);
-    }if(!sub){
-        return res.status(500).json({message:"unable to add"})
-    }
-    return res.status(201).json({sub});
-}
+const addSubject = tryCatch(async (req, res, next) => {
+  const { faculty, year, subject } = req.body;
 
-exports.getAllSubject = getAllSubject;
-exports.addSubject = addSubject;
+  const sub = new SubjectModel({
+    faculty,
+    year,
+    subject,
+  });
+
+  const newSubject = await sub.save();
+
+  if (!newSubject) throw new CustomError("unable to add");
+
+  return res.status(201).json({ sub });
+});
+
+const deleteSubject = tryCatch(async (req, res) => {
+  const { id } = req.params;
+
+  if (!id) throw new CustomError("ID is required");
+
+  const subjectToDelete = await SubjectModel.findByIdAndDelete(id);
+
+  if (!subjectToDelete) throw new CustomError("Subject not found", 400);
+
+  return res.status(200).json(subjectToDelete);
+});
+
+module.exports = {
+  getAllSubject,
+  addSubject,
+  deleteSubject,
+};
