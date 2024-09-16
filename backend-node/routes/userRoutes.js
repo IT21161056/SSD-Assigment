@@ -5,24 +5,36 @@ const {
   deleteUserById,
   getAllUsers,
   getUserById,
-  login,
   updateUser,
-} = require("../Controller/UserController");
-const loginLimitter = require("../middleware/loginLimitter");
+} = require("../controller/UserController");
+
+// const loginLimiter = require("../middleware/loginLimiter");
 const apiRateLimitter = require("../middleware/apiRateLimitter");
+
 const {
   addUserValidator,
   updateUserValidator,
   deleteUserByValidator,
   getUserByIdValidator,
   loginValidator,
-} = require("../middleware/userValidator");
+  validateAndSanitize,
+} = require("../validators/userValidator");
 
 router.get("/", getAllUsers);
-router.post("/", apiRateLimitter, addUserValidator, addUser);
-router.get("/:id", getUserByIdValidator, getUserById);
-router.put("/:id", updateUserValidator, updateUser);
-router.delete("/:id", deleteUserByValidator, deleteUserById);
-router.post("/login", loginLimitter, loginValidator, login);
+router.post(
+  "/",
+  apiRateLimitter,
+  addUserValidator,
+  validateAndSanitize,
+  addUser
+);
+router.get("/:id", getUserByIdValidator, validateAndSanitize, getUserById);
+router.put("/:id", updateUserValidator, validateAndSanitize, updateUser);
+router.delete(
+  "/:id",
+  deleteUserByValidator,
+  validateAndSanitize,
+  deleteUserById
+);
 
 module.exports = router;

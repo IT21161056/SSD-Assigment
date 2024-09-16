@@ -55,10 +55,10 @@ export default function LectureHome() {
         setLectureList(res.data);
         console.log(res.data);
       });
-      console.log(userDetails);
+      console.log("user details >>", userDetails);
       console.log(isAuthenticated);
     };
-    UserServices.getUser(userDetails.userID).then((Response) => {
+    UserServices.getUser(userDetails.user._id).then((Response) => {
       setlastName(Response.data.lastName);
       setinitials(Response.data.initials);
     });

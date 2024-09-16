@@ -16,15 +16,15 @@ const LibraryItemSchema = new Schema({
   },
   pdf: {
     type: String,
-    required: true,
+    //required: true,
   },
   cloudinary_id_img: {
     type: String,
-    required: true,
+    //required: true,
   },
   cloudinary_id_pdf: {
     type: String,
-    required: true,
+    //required: true,
   },
 });
 

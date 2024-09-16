@@ -16,6 +16,7 @@ const noticeRouter = require("./routes/NoticeRouter");
 const userRouter = require("./routes/userRoutes");
 const libraryItemRouter = require("./routes/LibraryItemRouter");
 const LectureRouter = require("./routes/LectureRouter");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -37,13 +38,12 @@ app.use(cookieParser());
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/", rootRoute);
 
+app.use("/auth", authRoutes);
 app.use("/notice", noticeRouter);
 app.use("/user", userRouter);
 app.use("/Lecture", LectureRouter);
-app.use("/pdf", require("./routes/LibraryItemRouter"));
-// app.use("/libarary", libraryItemRouter);
-//app.use("/resource",resour )
-// app.use("/lecture", require("./Router/LectureRouter"));
+app.use("/lbitem", require("./routes/LibraryItemRouter"));
+app.use("/subject", require("./routes/subjectRoutes"));
 
 app.get('/api/hello', (req, res) => {
   res.json({ message: 'Hello from the secure development server!' });
