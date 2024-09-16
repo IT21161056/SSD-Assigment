@@ -15,7 +15,7 @@ class userServices {
   }
 
   createUser(user) {
-    return api.post("${URL}", user);
+    return api.post(`${URL}`, user);
   }
 
   updateUser(id, user) {

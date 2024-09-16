@@ -24,7 +24,7 @@ function createAccessToken(user, token) {
 }
 
 function createRefreshToken(user, token) {
-  return jwt.sign({ regNumber: user.regNumber }, token, {
+  return jwt.sign({ email: user.email }, token, {
     expiresIn: refreshTokenExpiresIn,
   });
 }
@@ -55,6 +55,7 @@ const login = asyncHandler(async (req, res) => {
       process.env.REFRESH_TOKEN_SECRET
     );
 
+    console.log("refreshToken >>>>>>>>>>>", refreshToken);
     // Create secure cookie with refresh token
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true, //accessible only by web server
@@ -86,7 +87,7 @@ const refresh = (req, res) => {
     asyncHandler(async (err, decoded) => {
       if (err) throw new CustomError("Invalid refresh token", 403);
 
-      console.log("email >>>", decoded.email);
+      console.log("decoded >>>", decoded);
 
       const foundUser = await User.findOne({
         email: decoded.email,

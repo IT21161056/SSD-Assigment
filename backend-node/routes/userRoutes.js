@@ -23,8 +23,8 @@ const {
 router.get("/", getAllUsers);
 router.post(
   "/",
-  apiRateLimitter,
-  addUserValidator,
+  // apiRateLimitter,
+  // addUserValidator,
   validateAndSanitize,
   addUser
 );
