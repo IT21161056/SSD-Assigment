@@ -19,20 +19,15 @@ const LectureRouter = require("./routes/LectureRouter");
 const authRoutes = require("./routes/authRoutes");
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 
 connectDB();
 
 app.use(logger);
 
-//app.use(cors());
-
-app.use(cors({
-  origin: 'http://localhost:3000'
-}));
+app.use(cors(corsOptions));
 
 app.use(express.json());
-
 app.use(cookieParser());
 
 app.use("/", express.static(path.join(__dirname, "public")));
@@ -45,8 +40,8 @@ app.use("/Lecture", LectureRouter);
 app.use("/lbitem", require("./routes/LibraryItemRouter"));
 app.use("/subject", require("./routes/subjectRoutes"));
 
-app.get('/api/hello', (req, res) => {
-  res.json({ message: 'Hello from the secure development server!' });
+app.get("/api/hello", (req, res) => {
+  res.json({ message: "Hello from the secure development server!" });
 });
 
 app.all("*", (req, res) => {
@@ -63,35 +58,17 @@ app.all("*", (req, res) => {
 // Error handling
 app.use(errorHandler);
 
+const privateKey = fs.readFileSync("server.key", "utf8");
+const certificate = fs.readFileSync("server.cert", "utf8");
+const credentials = { key: privateKey, cert: certificate };
+
 // app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
+//   console.log(`Server is up and running on Port:${PORT}`);
 // });
 
-// Load the SSL Certificate and Key
-// const options = {
-//   key: fs.readFileSync("server.key", 'utf8'), // Path to the private key
-//   cert: fs.readFileSync("server.cert", 'utf8') // Path to the self-signed certificate
-// };
-
-const privateKey = fs.readFileSync('server.key', 'utf8');
-const certificate = fs.readFileSync('server.cert', 'utf8');
-const credentials = { key: privateKey, cert: certificate };
-console.log(privateKey);
-console.log(certificate);
-
-
- 
 // Create HTTPS server
 const httpsServer = https.createServer(credentials, app);
- 
-httpsServer.listen(443, () => {
-  console.log('HTTPS Server running on https://localhost:443');
+
+httpsServer.listen(PORT, () => {
+  console.log(`HTTPS Server running on https://localhost:${PORT}`);
 });
- 
-
- 
-
-// // Create an HTTPS server
-// https.createServer(options, app).listen(5000, () => {
-//   console.log("HTTPS Server running on port 443");
-// });

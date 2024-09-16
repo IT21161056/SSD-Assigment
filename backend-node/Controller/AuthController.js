@@ -4,41 +4,55 @@ const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const { CustomError } = require("../exceptions/baseException");
 
+const accessTokenExpiresIn = "1m";
+const refreshTokenExpiresIn = "7d";
+
+function createAccessToken(user, token) {
+  return jwt.sign(
+    {
+      UserInfo: {
+        regNumber: user.regNumber,
+        initials: user.initials,
+        lastName: user.lastName,
+        email: user.email,
+        role: user.role,
+      },
+    },
+    token,
+    { expiresIn: accessTokenExpiresIn }
+  );
+}
+
+function createRefreshToken(user, token) {
+  return jwt.sign({ regNumber: user.regNumber }, token, {
+    expiresIn: refreshTokenExpiresIn,
+  });
+}
+
 // @desc Login
 // @route POST /auth
 // @access Public
-
-const accessTokenExpiresIn = "1m"; // Access token expiry
-const refreshTokenExpiresIn = "7d";
-
 const login = asyncHandler(async (req, res) => {
-  const { regNumber, password } = req.body;
+  const { password, email } = req.body;
 
-  if (!regNumber || !password)
+  console.log(req.body);
+
+  if (!email || !password)
     throw new CustomError("All fields are required", 400);
 
-  const foundUser = await User.findOne({ regNumber }).exec();
+  const foundUser = await User.findOne({ email }).exec();
 
   if (foundUser && (await bcrypt.compare(password, foundUser.password))) {
     // generateToken(res, foundUser._id);
 
-    const accessToken = jwt.sign(
-      {
-        UserInfo: {
-          regNumber: foundUser.regNumber,
-          initials: foundUser.initials,
-          lastName: foundUser.lastName,
-          role: foundUser.role,
-        },
-      },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: accessTokenExpiresIn }
+    const accessToken = createAccessToken(
+      foundUser,
+      process.env.ACCESS_TOKEN_SECRET
     );
 
-    const refreshToken = jwt.sign(
-      { regNumber: foundUser.regNumber },
-      process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: refreshTokenExpiresIn }
+    const refreshToken = createRefreshToken(
+      foundUser,
+      process.env.REFRESH_TOKEN_SECRET
     );
 
     // Create secure cookie with refresh token
@@ -72,21 +86,17 @@ const refresh = (req, res) => {
     asyncHandler(async (err, decoded) => {
       if (err) throw new CustomError("Invalid refresh token", 403);
 
+      console.log("email >>>", decoded.email);
+
       const foundUser = await User.findOne({
-        regNumber: decoded.regNumber,
+        email: decoded.email,
       }).exec();
 
       if (!foundUser) throw new CustomError("User Not found", 403);
 
-      const newAccessToken = jwt.sign(
-        {
-          UserInfo: {
-            regNumber: foundUser.regNumber,
-            role: foundUser.role,
-          },
-        },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: accessTokenExpiresIn }
+      const newAccessToken = createAccessToken(
+        foundUser,
+        process.env.ACCESS_TOKEN_SECRET
       );
 
       res.json({ accessToken: newAccessToken });

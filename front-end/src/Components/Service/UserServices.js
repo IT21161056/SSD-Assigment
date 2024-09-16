@@ -3,25 +3,27 @@
 
 import { api } from ".";
 
+const URL = "/user";
+
 class userServices {
   getAllUsers() {
-    return api.get("/user/");
+    return api.get(URL);
   }
 
   getUser(id) {
-    return api.get(`/user/${id}`);
+    return api.get(`${URL}/${id}`);
   }
 
   createUser(user) {
-    return api.post("/user/", user);
+    return api.post("${URL}", user);
   }
 
   updateUser(id, user) {
-    return api.put(`/user/${id}`, user);
+    return api.put(`${URL}/${id}`, user);
   }
 
   deleteUser(id) {
-    return api.delete(`/user/${id}`);
+    return api.delete(`${URL}/${id}`);
   }
 
   login(loginTemplate) {

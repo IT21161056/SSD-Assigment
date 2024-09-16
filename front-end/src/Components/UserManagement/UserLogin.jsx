@@ -11,8 +11,8 @@ import { jwtDecode } from "jwt-decode";
 import client_id from "../OAuthcredentials";
 
 const LoginForm = (params) => {
-  const [regNumber, setregNumber] = useState("");
-  const [password, setpassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const nav = useNavigate();
 
   const { user, setUser, isAuthenticated, setIsAuthenticated } =
@@ -22,7 +22,7 @@ const LoginForm = (params) => {
     e.preventDefault();
 
     const loginTemplate = {
-      regNumber,
+      email,
       password,
     };
 
@@ -84,14 +84,16 @@ const LoginForm = (params) => {
   };
 
   useEffect(() => {
-    google.accounts.id.initialize({
-      client_id: client_id,
-      callback: handleCallBackResponse,
-    });
-    google.accounts.id.renderButton(document.getElementById("sign-in-div"), {
-      theme: "outline",
-      size: "large",
-    });
+    if (google) {
+      google.accounts.id.initialize({
+        client_id: client_id,
+        callback: handleCallBackResponse,
+      });
+      google.accounts.id.renderButton(document.getElementById("sign-in-div"), {
+        theme: "outline",
+        size: "large",
+      });
+    }
   }, []);
 
   return (
@@ -104,9 +106,9 @@ const LoginForm = (params) => {
             <input
               type="text"
               name="email"
-              placeholder="Registration number"
+              placeholder="Email address..."
               onChange={(e) => {
-                setregNumber(e.target.value);
+                setEmail(e.target.value);
               }}
               required
             />
@@ -116,7 +118,7 @@ const LoginForm = (params) => {
               name="password"
               placeholder="Password"
               onChange={(e) => {
-                setpassword(e.target.value);
+                setPassword(e.target.value);
               }}
               required
             />

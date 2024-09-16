@@ -1,22 +1,22 @@
-import axios from 'axios'
+import { api } from ".";
 
-const URL = "http://localhost:443/notice";
+const URL = "/notice";
 
-class NoticeService{
-    createNotice(notice){
-        return axios.post(URL, notice);
-    }
-    getAllNotices(){
-        return axios.get(URL).then((res)=>res.data);
-    }
-    deleteNotice(noticeId){
-        return axios.delete(URL + '/' + noticeId)
-    }
-    updateNotice(noticeId, notice){
-        return axios.put(URL + '/' + noticeId,notice);
-    }
-    getNoticeById(_id){
-        return axios.get(URL + '/' + _id).then((resopnse)=>resopnse.data)
-    }
+class NoticeService {
+  createNotice(notice) {
+    return api.post(URL, notice);
+  }
+  getAllNotices() {
+    return api.get(URL).then((res) => res.data);
+  }
+  deleteNotice(noticeId) {
+    return api.delete(URL + "/" + noticeId);
+  }
+  updateNotice(noticeId, notice) {
+    return api.put(URL + "/" + noticeId, notice);
+  }
+  getNoticeById(_id) {
+    return api.get(URL + "/" + _id).then((resopnse) => resopnse.data);
+  }
 }
 export default new NoticeService();
