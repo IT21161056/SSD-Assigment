@@ -14,7 +14,8 @@ const UserSchema = new Schema(
     },
     email: {
       type: String,
-      required: true, // Fixed typo: should be "required"
+      required: true, // Fixed typo: should be "required",
+      unique: true,
     },
     mobileNumber: {
       type: String,

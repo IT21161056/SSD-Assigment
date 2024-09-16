@@ -1,17 +1,17 @@
 import axios from "axios";
 import { api } from ".";
 
-const URL = "http://localhost:443/Lecture";
+const URL = "/Lecture";
 
 class LectureService {
   createLecture(lecture) {
-    return api.post("/Lecture", lecture);
+    return api.post(URL, lecture);
   }
   getAllLecturers() {
-    return api.get(`/Lecture`);
+    return api.get(URL);
   }
   deleteLecture(Id) {
-    return axios.delete(`http://localhost:443/Lecture/${Id}`);
+    return axios.delete(`${URL}/${Id}`);
   }
 
   updateNotice(noticeId, notice) {
@@ -19,7 +19,7 @@ class LectureService {
   }
 
   getLectureById(id) {
-    return axios.get(`http://localhost:443/Lecture/${id}`);
+    return axios.get(`${URL}/${id}`);
   }
 }
 export default new LectureService();
