@@ -11,49 +11,38 @@ import { jwtDecode } from "jwt-decode";
 import client_id from "../OAuthcredentials";
 
 const LoginForm = (params) => {
-  const [regNumber, setregNumber] = useState("");
-  const [password, setpassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const nav = useNavigate();
-  const {
-    userDetails,
-    setUserDetails,
-    isAuthenticated,
-    setIsAuthenticated,
-    userName,
-    setUserName,
-  } = useContext(AuthContext);
-  useEffect(() => {}, []);
+
+  const { user, setUser, isAuthenticated, setIsAuthenticated } =
+    useContext(AuthContext);
 
   const submitClicked = (e) => {
     e.preventDefault();
+
     const loginTemplate = {
-      regNumber,
+      email,
       password,
     };
 
     UserServices.login(loginTemplate)
-      .then((res) => {
-        // setstudent(res.data)
-        console.log(res.data);
-        if (res.data.role == "student") {
+      .then((response) => {
+        const authenticatedUser = response.data.user;
+        console.log("response >>", authenticatedUser);
+        setUser(response.data.user);
+        setIsAuthenticated(true);
+
+        localStorage.setItem("accessToken", response.data.accessToken);
+
+        if (authenticatedUser.role == "student") {
           console.log("true:student");
-          setUserDetails(res.data);
-          setIsAuthenticated(true);
-          usernamesetter(res.data);
           nav("/StudentHome");
-        } else if (res.data.role == "admin") {
+        } else if (authenticatedUser.role == "admin") {
           console.log("true:admin");
-          setUserDetails(res.data);
-          setIsAuthenticated(true);
-          usernamesetter(res.data);
-          // nav("/AdminHome")
           nav("/AdminHome");
-        } else if (res.data.role == "lecture") {
+        } else if (authenticatedUser.role == "lecturer") {
           console.log("true:lecture");
-          setUserDetails(res.data);
-          setIsAuthenticated(true);
-          usernamesetter(res.data);
-          // nav("/AdminHome")
           nav("/Lecture");
         }
       })
@@ -78,25 +67,16 @@ const LoginForm = (params) => {
     console.log(loginTemplate);
   };
 
-  const usernamesetter = (e) => {
-    // console.log(e.userID);
-    UserServices.getUser(e.userID).then((Response) => {
-      setUserName(Response.data.lastName);
-      // console.log(Response.data.lastName);
-    });
-  };
-
-  const [user, setUser] = useState({});
+  const [OAuthUser, setOAuthUser] = useState({});
   //Google OAuth
   const google = window.google;
 
   const handleCallBackResponse = (response) => {
     console.log("Encoded Jwt token: " + response.credential);
     var userObject = jwtDecode(response.credential);
-    setUserDetails(userObject);
-    setIsAuthenticated(true);
-    setUserName(userObject.name);
     setUser(userObject);
+    setIsAuthenticated(true);
+    setOAuthUser(userObject);
 
     if (userObject) {
       nav("/StudentHome");
@@ -104,14 +84,16 @@ const LoginForm = (params) => {
   };
 
   useEffect(() => {
-    google.accounts.id.initialize({
-      client_id: client_id,
-      callback: handleCallBackResponse,
-    });
-    google.accounts.id.renderButton(document.getElementById("sign-in-div"), {
-      theme: "outline",
-      size: "large",
-    });
+    if (google) {
+      google.accounts.id.initialize({
+        client_id: client_id,
+        callback: handleCallBackResponse,
+      });
+      google.accounts.id.renderButton(document.getElementById("sign-in-div"), {
+        theme: "outline",
+        size: "large",
+      });
+    }
   }, []);
 
   return (
@@ -124,9 +106,9 @@ const LoginForm = (params) => {
             <input
               type="text"
               name="email"
-              placeholder="Registration number"
+              placeholder="Email address..."
               onChange={(e) => {
-                setregNumber(e.target.value);
+                setEmail(e.target.value);
               }}
               required
             />
@@ -136,7 +118,7 @@ const LoginForm = (params) => {
               name="password"
               placeholder="Password"
               onChange={(e) => {
-                setpassword(e.target.value);
+                setPassword(e.target.value);
               }}
               required
             />

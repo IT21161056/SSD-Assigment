@@ -5,11 +5,13 @@ const {
   deleteUserById,
   getAllUsers,
   getUserById,
-  login,
   updateUser,
-} = require("../Controller/UserController");
-const loginLimitter = require("../middleware/loginLimitter");
+  userByEmail,
+} = require("../controller/UserController");
+
+// const loginLimiter = require("../middleware/loginLimiter");
 const apiRateLimitter = require("../middleware/apiRateLimitter");
+
 const {
   addUserValidator,
   updateUserValidator,
@@ -22,8 +24,8 @@ const {
 router.get("/", getAllUsers);
 router.post(
   "/",
-  apiRateLimitter,
-  addUserValidator,
+  // apiRateLimitter,
+  // addUserValidator,
   validateAndSanitize,
   addUser
 );
@@ -35,12 +37,7 @@ router.delete(
   validateAndSanitize,
   deleteUserById
 );
-router.post(
-  "/login",
-  loginLimitter,
-  loginValidator,
-  validateAndSanitize,
-  login
-);
+
+router.post("/user-by-email", userByEmail);
 
 module.exports = router;

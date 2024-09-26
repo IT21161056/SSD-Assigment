@@ -26,6 +26,7 @@ import LectureAdminHome from "./Components/Lecture/LectureAdminHome";
 import AnnouncemntViewPro from "./Components/Admin/AnnouncemntViewPro";
 import Foot from "./Components/Foot";
 import StudentLectuersView from "./Components/Student/StudentLectuersView";
+import PrivateRoute from "./Components/UserManagement/AuthMiddleware";
 
 function App() {
   return (
@@ -39,91 +40,91 @@ function App() {
             <Route path="/" element={<LoginForm />} exact />
 
             {/* admin */}
-            <Route path="/AdminHome" element={<AdminHome />} exact />
+            <Route path="/AdminHome" element={<PrivateRoute element={<AdminHome />}/>} exact />
             <Route
               path="/AdminHome/NoticeTable"
-              element={<NoticeTable />}
+              element={<PrivateRoute element={<NoticeTable />}/>}
               exact
             />
             <Route
               path="/AdminHome/NoticeTable/NoticeForm"
-              element={<NoticeForm />}
+              element={<PrivateRoute element={<NoticeForm />}/>}
               exact
             />
             <Route
               path="/AdminHome/NoticeTable/NoticeForm/:_id"
-              element={<NoticeForm />}
+              element={<PrivateRoute element={<NoticeForm />}/>}
               exact
             />
-            <Route path="/annvp/:_id" element={<AnnouncemntViewPro />} exact />
+            <Route path="/annvp/:_id"  element={<PrivateRoute element={<AnnouncemntViewPro />}/>} exact />
 
             <Route
               path="/AdminHome/addLibararyItemForm"
-              element={<LibararyItemForm />}
+              element={<PrivateRoute element={<LibararyItemForm />}/>}
               exact
             />
             <Route
               path="/AdminHome/updateLibararyItemForm/:id"
-              element={<LibararyItemForm />}
+              element={<PrivateRoute element={<LibararyItemForm />}/>}
               exact
             />
             <Route
               path="/AdminHome/LibararyItemForm/:id"
-              element={<LibararyItemForm />}
+              element={<PrivateRoute element={<LibararyItemForm />}/>}
               exact
             />
             <Route
               path="/AdminHome/LibararyItemForm/:id"
-              element={<LibararyItemForm />}
+              element={<PrivateRoute element={<LibararyItemForm />}/>}
               exact
             />
             <Route
               path="/AdminHome/ViewLibararyItems"
-              element={<ViewLibraryItems />}
+              element={<PrivateRoute element={<ViewLibraryItems />}/>}
               exact
             />
 
             <Route path="/StudentHome" element={<StudentHome />} exact />
             <Route
               path="/StudentHome/viewLibrarayItem"
-              element={<StudentViewLibraryItem />}
+              element={<PrivateRoute element={<StudentViewLibraryItem />}/>}
               exact
             />
 
             {/* Lecture */}
             <Route
               path="/LectureHome/AddLecture"
-              element={<AddLecture />}
+              element={<PrivateRoute element={<AddLecture />}/>}
               exact
             />
-            <Route path="/viewlecture" element={<ViewLectureT />} exact />
+            <Route path="/viewlecture"  element={<PrivateRoute element={<ViewLectureT />}/>} exact />
 
             {/* user management */}
             <Route path="/user/:id" element={<UserForm />} exact />
             <Route path="/login" element={<LoginForm />} exact />
-            <Route path="/users" element={<UserList />} exact />
+            <Route path="/users"  element={<PrivateRoute element={<UserList />}/>} exact />
 
             {/* <Route path="/Lecture" element={<LectureHome />} exact /> */}
             {/* <Route path="/Lecture/AddLecture" element={<AddLecture />} exact />
             <Route path="/Lecture/:Id" element={<ViewLectureT />} exact /> */}
 
-            <Route path="/Lecture" element={<LectureHome />} exact />
-            <Route path="/Lecture/AddLecture" element={<AddLecture />} exact />
-            <Route path="/Lecture/:id" element={<ViewLecture />} exact />
+            <Route path="/Lecture"  element={<PrivateRoute element={<LectureHome />}/>} exact />
+            <Route path="/Lecture/AddLecture"  element={<PrivateRoute element={<AddLecture />}/>} exact />
+            <Route path="/Lecture/:id"  element={<PrivateRoute element={<ViewLecture />}/>} exact />
             <Route
               path="/UpdateLecture/:id"
-              element={<UpdateLectures />}
+              element={<PrivateRoute element={<UpdateLectures />}/>}
               exact
             />
-            <Route path="/LectureHome" element={<LectureDash />} exact />
+            <Route path="/LectureHome"  element={<PrivateRoute element={<LectureDash />}/>} exact />
             <Route
               path="/AdminHome/LectureDetails"
-              element={<LectureAdminHome />}
+              element={<PrivateRoute element={<LectureAdminHome />}/>}
               exact
             />
             <Route
               path="/StudentHome/LectureDetails"
-              element={<StudentLectuersView />}
+              element={<PrivateRoute element={<StudentLectuersView />}/>}
               exact
             />
           </Routes>

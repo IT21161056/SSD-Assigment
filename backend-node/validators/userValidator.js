@@ -63,13 +63,8 @@ const updateUserValidator = [
 ];
 
 // validator for user login
-
 const loginValidator = [
-  body("regNumber")
-    .notEmpty()
-    .withMessage("Registration number is required")
-    .trim()
-    .escape(),
+  body("email").notEmpty().withMessage("Email is required").trim().escape(),
   body("password")
     .notEmpty()
     .withMessage("Password must beat least 6 characters"),
