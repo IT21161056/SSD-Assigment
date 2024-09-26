@@ -1,6 +1,6 @@
 const { body, validationResult, param } = require("express-validator");
 
-// validator for adding a new user
+// Validator for adding a new user
 
 const addUserValidator = [
   body("lastName")
@@ -27,7 +27,7 @@ const addUserValidator = [
     .escape(),
   body("password")
     .isLength({ min: 6 })
-    .withMessage("Password must beat least 6 characters")
+    .withMessage("Password must be at least 6 characters")
     .trim()
     .escape(),
 ];
@@ -75,12 +75,12 @@ const loginValidator = [
     .withMessage("Password must beat least 6 characters"),
 ];
 
-// validator for retiveving user by ID
+// Validator for retiveving user by ID
 const getUserByIdValidator = [
   param("id").isMongoId().withMessage("Invalid user id format"),
 ];
 
-// validator for deletign a user by ID
+// Validator for deletign a user by ID
 
 const deleteUserByValidator = [
   param("id").isMongoId().withMessage("Invalid user id format"),
