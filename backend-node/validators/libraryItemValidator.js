@@ -12,13 +12,19 @@ const validateAddLibraryItem = [
   body("pdf").optional().isURL().withMessage("Invalid PDF URL format"),
 ];
 
+// Validation rules for get an item by Id
+
 const getLibraryItemByIdValidator = [
   param("id").isMongoId().withMessage("Invalid user id format"),
 ];
 
+// Validation rules for delete an item by Id
+
 const deleteLibraryItemByIdValidator = [
   param("id").isMongoId().withMessage("Invalid user id format"),
 ];
+
+// Middleware Function
 
 const validateAndSanitize = (req, res, next) => {
   const errors = validationResult(req);

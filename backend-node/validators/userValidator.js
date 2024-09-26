@@ -32,7 +32,7 @@ const addUserValidator = [
     .escape(),
 ];
 
-// validator for updating a user
+// Validator for updating a user
 
 const updateUserValidator = [
   param("id").isMongoId().withMessage("Invalid user id format"),
@@ -62,7 +62,8 @@ const updateUserValidator = [
     .withMessage("Password must beat least 6 characters"),
 ];
 
-// validator for user login
+// Validator for user login
+
 const loginValidator = [
   body("email").notEmpty().withMessage("Email is required").trim().escape(),
   body("password")
@@ -71,6 +72,7 @@ const loginValidator = [
 ];
 
 // Validator for retiveving user by ID
+
 const getUserByIdValidator = [
   param("id").isMongoId().withMessage("Invalid user id format"),
 ];
@@ -80,6 +82,8 @@ const getUserByIdValidator = [
 const deleteUserByValidator = [
   param("id").isMongoId().withMessage("Invalid user id format"),
 ];
+
+// Middleware Function
 
 const validateAndSanitize = (req, res, next) => {
   const errors = validationResult(req);

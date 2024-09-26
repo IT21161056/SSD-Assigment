@@ -1,5 +1,7 @@
 const { body, param, validationResult } = require("express-validator");
 
+// Validation rules for add a subject
+
 const subjectValidator = [
   body("faculty")
     .isString()
@@ -16,9 +18,13 @@ const subjectValidator = [
     .withMessage("Subject is required"),
 ];
 
+// Validation rules for delete a subject by Id
+
 const deleteSubjectValidator = [
   param("id").isMongoId().withMessage("Invalid user id format"),
 ];
+
+// Middleware Function
 
 const validateAndSanitize = (req, res, next) => {
   const errors = validationResult(req);
