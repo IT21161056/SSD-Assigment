@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/userModel");
+const User = require("../model/UserModel");
 const { CustomError } = require("../exceptions/baseException");
 
 const protect = async (req, res, next) => {
@@ -26,11 +26,11 @@ const protect = async (req, res, next) => {
   }
 };
 
-const checkRole = (role) => {
-  return (req, res, next) => {
+const checkRole = (myRole) => {
+  return async (req, res, next) => {
     try {
-      if (!req.user || req.user.role !== role) {
-        throw new CustomError(`Access denied, ${role} role required`, 403);
+      if (!req.role || req.role !== myRole) {
+        throw new CustomError(`Access denied, ${myRole} role required`, 403);
       }
       next();
     } catch (error) {

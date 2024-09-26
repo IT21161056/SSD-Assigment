@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const { CustomError } = require("../exceptions/baseException");
 
-const accessTokenExpiresIn = "1m";
+const accessTokenExpiresIn = "15m";
 const refreshTokenExpiresIn = "7d";
 
 function createAccessToken(user, token) {
