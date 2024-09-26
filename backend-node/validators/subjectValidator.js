@@ -21,7 +21,7 @@ const subjectValidator = [
 // Validation rules for delete a subject by Id
 
 const deleteSubjectValidator = [
-  param("id").isMongoId().withMessage("Invalid user id format"),
+  param("id").isMongoId().withMessage("Invalid subject id format"),
 ];
 
 // Middleware Function
