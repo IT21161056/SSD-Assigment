@@ -1,6 +1,8 @@
 const rateLimit = require("express-rate-limit");
 const { logEvents } = require("./logger");
 
+// API Rate limitter functionality
+
 const rateLimitter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
   max: 1, // limit each IP to 10 requests per `window` per minute
