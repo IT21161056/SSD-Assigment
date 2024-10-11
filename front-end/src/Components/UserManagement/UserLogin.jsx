@@ -74,12 +74,44 @@ const LoginForm = (params) => {
   const handleCallBackResponse = (response) => {
     console.log("Encoded Jwt token: " + response.credential);
     var userObject = jwtDecode(response.credential);
-    setUser(userObject);
-    setIsAuthenticated(true);
-    setOAuthUser(userObject);
-
+    let googleToken = response.credential
     if (userObject) {
-      nav("/StudentHome");
+      UserServices.getUserByEmail(userObject.email)
+      .then((response) => {
+        const authenticatedUser = response.data;
+        console.log("response >>", authenticatedUser);
+        setUser(response.data);
+        setIsAuthenticated(true);
+
+        localStorage.setItem("accessToken",googleToken);
+
+        if (authenticatedUser.role == "student") {
+          console.log("true:student");
+          nav("/StudentHome");
+        } else if (authenticatedUser.role == "admin") {
+          console.log("true:admin");
+          nav("/AdminHome");
+        } else if (authenticatedUser.role == "lecturer") {
+          console.log("true:lecture");
+          nav("/Lecture");
+        }
+      })
+      .catch((err) => {
+        if (err.response && err.response.status === 429) {
+          Swal.fire({
+            icon: "error",
+            title: "Too many login attempts",
+            text: err.response.data.message,
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Login Failed",
+            text: "User Name OR Password In correct!",
+          });
+        }
+        console.log("failed");
+      });
     }
   };
 
