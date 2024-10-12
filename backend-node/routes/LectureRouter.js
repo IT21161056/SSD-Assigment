@@ -9,7 +9,7 @@ const {
   updateLecture,
   getAllLecture,
   deleteLecture,
-} = require("../Controller/LectureController");
+} = require("../controller/LectureController");
 const {
   addLectureValidator,
   updateLectureValidator,
