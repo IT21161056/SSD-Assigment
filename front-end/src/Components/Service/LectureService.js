@@ -11,7 +11,7 @@ class LectureService {
     return api.get(URL);
   }
   deleteLecture(Id) {
-    return axios.delete(`${URL}/${Id}`);
+    return api.delete(`${URL}/${Id}`);
   }
 
   updateNotice(noticeId, notice) {
@@ -19,7 +19,7 @@ class LectureService {
   }
 
   getLectureById(id) {
-    return axios.get(`${URL}/${id}`);
+    return api.get(`${URL}/${id}`);
   }
 }
 export default new LectureService();

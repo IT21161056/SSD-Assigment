@@ -9,7 +9,7 @@ const {
   updateLecture,
   getAllLecture,
   deleteLecture,
-} = require("../Controller/LectureController");
+} = require("../controller/LectureController");
 const {
   addLectureValidator,
   updateLectureValidator,
@@ -17,12 +17,13 @@ const {
   deleteLectureValidator,
   validateAndSanitize,
 } = require("../validators/lectureValidator");
+const { checkRole } = require("../middleware/authMiddleware");
 
 router.post("/", upload.array("uploaded_Image", 10), addLecture);
 
 router.use(verifyJWT);
 
-router.get("/", getAllLecture);
+router.get("/", checkRole("student"), getAllLecture);
 router.post("/", addLectureValidator, validateAndSanitize, addLecture);
 router.get(
   "/:id",

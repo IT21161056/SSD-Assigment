@@ -1,5 +1,7 @@
 const { body, param } = require("express-validator");
 
+// Validation rules for adding a notice
+
 const validateAddNotice = [
   body("faculty")
     .notEmpty()
@@ -26,6 +28,8 @@ const validateAddNotice = [
     .escape(),
 ];
 
+// Validation rules for updating a notice
+
 const validateUpdateNotice = [
   param("id").isMongoId().withMessage("Invalid user id format"),
   body("faculty")
@@ -45,13 +49,19 @@ const validateUpdateNotice = [
     .escape(),
 ];
 
+// Validation rules for get a notice by Id
+
 const validateNoticeById = [
   param("id").notEmpty().withMessage("Invalid ID format").escape(),
 ];
 
+// Validation rules for delete a notice by Id
+
 const validateDeleteNoticeById = [
   param("id").isMongoId().withMessage("Invalid ID format").escape(),
 ];
+
+// Middleware Function
 
 const validateAndSanitize = (req, res, next) => {
   const errors = validationResult(req);

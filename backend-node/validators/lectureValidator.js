@@ -1,5 +1,7 @@
 const { body, param, validationResult } = require("express-validator");
 
+// Validator for adding a new lecture
+
 const addLectureValidator = [
   body("year").notEmpty().withMessage("Year is required").trim().escape(),
   body("semester")
@@ -27,6 +29,8 @@ const addLectureValidator = [
   body("pdf").optional().isURL().withMessage("Invalid PDF URL format"),
 ];
 
+// Validator for updating a lecture
+
 const updateLectureValidator = [
   body("year").optional().trim().escape(),
   body("semester").optional().trim().escape(),
@@ -49,13 +53,19 @@ const updateLectureValidator = [
   body("pdf").optional().isURL().withMessage("Invalid PDF URL format"),
 ];
 
+// Validator for getting a lecture by Id
+
 const getLectureByIdValidator = [
   param("id").isMongoId().withMessage("Invalid ID format"),
 ];
 
+// Validator for deleting a lecture
+
 const deleteLectureValidator = [
   param("id").isMongoId().withMessage("Invalid ID format"),
 ];
+
+// Middleware Function
 
 const validateAndSanitize = (req, res, next) => {
   const errors = validationResult(req);

@@ -1,6 +1,6 @@
 const { body, validationResult, param } = require("express-validator");
 
-// validator for adding a new user
+// Validator for adding a new user
 
 const addUserValidator = [
   body("lastName")
@@ -27,12 +27,12 @@ const addUserValidator = [
     .escape(),
   body("password")
     .isLength({ min: 6 })
-    .withMessage("Password must beat least 6 characters")
+    .withMessage("Password must be at least 6 characters")
     .trim()
     .escape(),
 ];
 
-// validator for updating a user
+// Validator for updating a user
 
 const updateUserValidator = [
   param("id").isMongoId().withMessage("Invalid user id format"),
@@ -62,7 +62,8 @@ const updateUserValidator = [
     .withMessage("Password must beat least 6 characters"),
 ];
 
-// validator for user login
+// Validator for user login
+
 const loginValidator = [
   body("email").notEmpty().withMessage("Email is required").trim().escape(),
   body("password")
@@ -70,16 +71,19 @@ const loginValidator = [
     .withMessage("Password must beat least 6 characters"),
 ];
 
-// validator for retiveving user by ID
+// Validator for retiveving user by ID
+
 const getUserByIdValidator = [
   param("id").isMongoId().withMessage("Invalid user id format"),
 ];
 
-// validator for deletign a user by ID
+// Validator for deletign a user by ID
 
 const deleteUserByValidator = [
   param("id").isMongoId().withMessage("Invalid user id format"),
 ];
+
+// Middleware Function
 
 const validateAndSanitize = (req, res, next) => {
   const errors = validationResult(req);
