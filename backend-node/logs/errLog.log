@@ -695,3 +695,4 @@
 20241012	15:52:51	20a2f407-03e9-4431-8a66-a4acce76987b	MongoServerError: E11000 duplicate key error collection: SSD.users index: email_1 dup key: { email: "harini01@gmail.com" }	undefined	/user/	undefined
 20241012	15:53:51	57ae0fdc-d86f-4c54-9c53-090fb52d264d	Error: User Is already existing!	undefined	/user/	undefined
 20241012	16:10:47	4f3d4da5-24a3-487a-8c3c-868848aeb803	Error: Not Found	undefined	/user/66f588345eadbe76089cd177	undefined
+20241012	16:47:45	0871ebc2-cce0-4712-bb13-ad7d0aed8e6e	MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://docs.atlas.mongodb.com/security-whitelist/	undefined	/user/	undefined
